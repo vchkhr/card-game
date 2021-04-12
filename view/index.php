@@ -11,6 +11,7 @@ $login = "./res/html/login.html";
 $userCard = "./res/html/user_card.html";
 $adminCard = "./res/html/card_admin.html";
 $forget = "./res/html/forget_password.html";
+$game = "./res/html/game.html";
 
 $manager = new NavigationManager($register);
 $manager->putScreen('register', $register);
@@ -18,6 +19,7 @@ $manager->putScreen('login', $login);
 $manager->putScreen('forget', $forget);
 $manager->putScreen('adminCard', $adminCard);
 $manager->putScreen('userCard', $userCard);
+$manager->putScreen('game', $game);
 
 
 //print_r($manager->arrFragment);
@@ -40,6 +42,8 @@ if (isset($_POST['registerUser'])) {
     $manager->renderBy('register');
 } elseif (isset($_POST['login'])) {
     $manager->renderBy('login');
+} elseif (isset($_POST['game'])) {
+    $manager->renderBy('game');
 }
 
 function arrayToUser(array $arr)

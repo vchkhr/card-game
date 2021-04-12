@@ -22,6 +22,7 @@ class NavigationManager
     {
         flush();
         ob_clean();
+        
         if (isset($this->htmlFileContent)) {
             echo $this->htmlFileContent;
             return true;

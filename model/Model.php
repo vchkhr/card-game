@@ -20,8 +20,8 @@ abstract class Model
 
     protected function setConnection()
     {
-        $this->connection = new DatabaseConnection('localhost', null, 'mburenko', 'sEcurEvsd3bd90&4#m5:424pass', 'sword');
-//        $this->connection = new DatabaseConnection("127.0.0.1", null, "mburenko", "sEcurEvsd3bd90&4#m5:424pass", "sword");
+        $this->connection = new DatabaseConnection('127.0.0.1', null, 'vkharchenk', 'securepass', 'sword');
+        // $this->connection = new DatabaseConnection('localhost', null, 'vkharchenk', 'securepass', 'sword');
     }
 
     abstract public function find($id);
