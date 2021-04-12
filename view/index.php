@@ -43,7 +43,9 @@ if (isset($_POST['registerUser'])) {
 } elseif (isset($_POST['login'])) {
     $manager->renderBy('login');
 } elseif (isset($_POST['game'])) {
-    $manager->renderBy('game');
+    $manager->changeScreen('game');
+    $manager->bind("#USER_NAME#", $userDb->login);
+    $manager->render();
 }
 
 function arrayToUser(array $arr)
