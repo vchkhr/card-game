@@ -8,33 +8,102 @@
 <body>
 
     <div id="opponent">
-        <div class="card" id="card-">
+        <div id="name">
+            <p>#PLAYER_2_NAME#</p>
         </div>
-
-    </div>
-
-    <div id="field-opponent"></div>
-
-    <div id="field-my"></div>
-
-    <div id="top-my">
-
-    </div>
-
-    <div id="my-cards">
-        <div class="card" id="card-">
-            <p class="name">CardName</p>
-            
-            <div class="row">
-                <p class="health">H:0</p>
-                <p class="attack">A:1</p>
+        <div id="cards">
+            <div class="card" id="card-">
+            </div>
+        </div>
+        <div id="health">
+            <p>Health: <span>#PLAYER_2_HEALTH#</span></p>
+        </div>
+        <div id="field">
+            <div class="card" id="card-">
             </div>
         </div>
     </div>
 
-    <div id="bottom-my">
-        <p>#USER_NAME#</p>
+
+    
+    <div id="timer">
+        <p>
+            <span class="time">TIME: <span id="time">30</span></span>
+            |
+            <span class="mana">MANA: <span id="mana">20</span></span>
+        </p>
     </div>
+
+
+
+    <div id="player">
+        <div id="field">
+
+        </div>
+        <div id="health">
+            <p>Health: <span>#PLAYER_1_HEALTH#</span></p>
+        </div>
+        <div id="cards">
+            <div class="card" id="card0">
+                <p class="name">card0</p>
+                
+                <div class="row">
+                    <p class="health">H:<span id="health"></span></p>
+                    <p class="attack">A:10</p>
+                </div>
+            </div>
+
+            <div class="card" id="card1">
+                <p class="name">card1</p>
+                
+                <div class="row">
+                    <p class="health">H:10</p>
+                    <p class="attack">A:10</p>
+                </div>
+            </div>
+
+            <div class="card" id="card2">
+                <p class="name">card2</p>
+                
+                <div class="row">
+                    <p class="health">H:10</p>
+                    <p class="attack">A:10</p>
+                </div>
+            </div>
+
+            <div class="card" id="card3">
+                <p class="name">card3</p>
+                
+                <div class="row">
+                    <p class="health">H:10</p>
+                    <p class="attack">A:10</p>
+                </div>
+            </div>
+
+            <div class="card" id="card4">
+                <p class="name">card4</p>
+                
+                <div class="row">
+                    <p class="health">H:10</p>
+                    <p class="attack">A:10</p>
+                </div>
+            </div>
+
+            <div class="card" id="card5">
+                <p class="name">card5</p>
+                
+                <div class="row">
+                    <p class="health">H:10</p>
+                    <p class="attack">A:10</p>
+                </div>
+            </div>
+        </div>
+        <div id="name">
+            <p>#PLAYER_1_NAME#</p>
+        </div>
+    </div>
+
+    <script src="./res/js/game.js"></script>
 
 </body>
 </html>

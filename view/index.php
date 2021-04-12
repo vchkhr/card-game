@@ -1,10 +1,12 @@
 <?php
 require_once("NavigationManager.php");
+require_once("../controller/ControllerGame.php");
 require_once("../controller/ControllerRegister.php");
 require_once("../model/Model.php");
 require_once("../model/User.php");
 require_once("../model/UserDB.php");
 require_once("../model/DatabaseConnection.php");
+require_once("../model/data_call/Player.php");
 
 $register = "./res/html/registration.html";
 $login = "./res/html/login.html";
@@ -44,7 +46,18 @@ if (isset($_POST['registerUser'])) {
     $manager->renderBy('login');
 } elseif (isset($_POST['game'])) {
     $manager->changeScreen('game');
-    $manager->bind("#USER_NAME#", $userDb->login);
+
+    $player1 = new Player(30, "pl1", null);
+    $player2 = new Player(30, "pl2", null);
+
+    $game = new ControllerGame(player1, player2);
+
+    $manager->bind("#PLAYER_1_NAME#", $player1->name);
+    $manager->bind("#PLAYER_2_NAME#", $player2->name);
+
+    $manager->bind("#PLAYER_1_HEALTH#", $player1->hp);
+    $manager->bind("#PLAYER_2_HEALTH#", $player2->hp);
+
     $manager->render();
 }
 

@@ -5,15 +5,75 @@ html, body {
     font-family: 'RocknRoll One';
 }
 
-div#opponent {
+
+
+div#opponent div#name {
+    background-color: cyan;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+
+    position: fixed;
+    top: 0px;
+}
+
+div#opponent div#cards {
     background-color: yellow;
     width: 100%;
     height: 200px;
     display: flex;
     justify-content: center;
+
+    position: fixed;
+    top: 50px;
 }
 
-div#top-my {
+div#opponent div#health {
+    background-color: red;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+
+    position: fixed;
+    top: 250px;
+}
+
+div#opponent div#field {
+    background-color: yellow;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+
+    position: fixed;
+    top: 300px;
+}
+
+
+div#timer {
+    line-height: 97vh;
+}
+
+div#timer p {
+    text-align: center;
+}
+
+
+
+div#player div#field {
+    background-color: yellow;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+
+    position: fixed;
+    bottom: 300px;
+}
+
+div#player div#health {
     background-color: red;
     width: 100%;
     height: 50px;
@@ -24,7 +84,7 @@ div#top-my {
     bottom: 250px;
 }
 
-div#my-cards {
+div#player div#cards {
     background-color: yellow;
     width: 100%;
     height: 200px;
@@ -35,7 +95,7 @@ div#my-cards {
     bottom: 50px;
 }
 
-div#bottom-my {
+div#player div#name {
     background-color: cyan;
     width: 100%;
     height: 50px;
@@ -46,6 +106,8 @@ div#bottom-my {
     bottom: 0px;
 }
 
+
+
 div.card {
     background-color: lightgreen;
     margin: 10px;
@@ -53,7 +115,6 @@ div.card {
     width: 80px;
     height: 160px;
     flex-direction: row;
-    position: fixed;
 }
 
 div.card p.name {
@@ -61,8 +122,9 @@ div.card p.name {
 }
 
 div.card div.row {
-    margin-top: 65px;
+    margin-top: 70px;
     bottom: 0px;
+    font-size: 11px;
 }
 
 div.card div.row p.health {
@@ -71,4 +133,12 @@ div.card div.row p.health {
 
 div.card div.row p.attack {
     float: right;
+}
+
+div#timer span.time {
+    color: red;
+}
+
+div#timer span.mana {
+    color: blue;
 }
