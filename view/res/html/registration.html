@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./res/css/styleRegister.css">
+    <SCRIPT type="text/javascript">
+
+        function validateEmail(email) {
+            const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+
+        function validate_form() {
+            valid = true;
+
+            if (document.contact_form.login.value == "") {
+                alert("Login is empty");
+                valid = false;
+            }
+
+            if (document.contact_form.password.value != document.contact_form.confirm_Password.value) {
+                alert("Incorrect confirm password");
+                valid = false;
+            }
+
+            if (document.contact_form.fullName.value == "") {
+                alert("Full name is empty");
+                valid = false;
+            }
+
+            if (!validateEmail(document.contact_form.email.value)) {
+                alert("Incorrect email");
+                valid = false;
+            }
+
+            return valid;
+        }
+
+    </SCRIPT>
+
+</head>
+<body>
+<div id="login-box" class="left">
+
+    <h1>Registration</h1>
+
+    <form name="contact_form" method="post" onsubmit="return validate_form ();">
+            <input type="text" name="registerUser[login]" placeholder="Login" required>
+            <input id="textPassword" type="password" name="registerUser[password]" placeholder="Password" required>
+            <input id="textConfirmPassword" type="password" name="registerUser[confirmPassword]" placeholder="Confirm password" required>
+            <input type="text" name="registerUser[fullName]" placeholder="Full name" required>
+            <input type="email" name="registerUser[email]" placeholder="Email" required>
+            <input type="submit">
+        <p id="textMessage"></p>
+    </form>
+    <form method="post">
+        <input type="submit" name="login" value="Sign in" style="width: auto">
+    </form>
+
+</div>
+
+</body>
+</html>
