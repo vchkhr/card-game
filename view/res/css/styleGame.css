@@ -1,7 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=RocknRoll+One:400);
 
-html, body {
+/* html {
+    min-height: 100%;
+    background: linear-gradient(rgba(255, 255, 0, 0.247), rgba(255, 255, 0, 0.062));
+} */
+
+html { 
+    background: url(../img/bkg.jpg) no-repeat center center fixed; 
+    backdrop-filter: blur(500px);
+;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
     margin: 0px;
+    padding: 0px;
     font-family: 'RocknRoll One';
 }
 
@@ -26,10 +43,17 @@ div#name p {
     line-height: 17.5px;
 }
 
+div#health img {
+    width: 20px;
+    height: 20px;
+    padding-top: 17.5px;
+
+}
+
 
 
 div#opponent div#name {
-    background-color: cyan;
+    /* background-color: cyan; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -40,7 +64,7 @@ div#opponent div#name {
 }
 
 div#opponent div#cards {
-    background-color: yellow;
+    /* background-color: yellow; */
     width: 100%;
     height: 200px;
     display: flex;
@@ -51,7 +75,7 @@ div#opponent div#cards {
 }
 
 div#opponent div#health {
-    background-color: red;
+    /* background-color: red; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -62,7 +86,7 @@ div#opponent div#health {
 }
 
 div#opponent div#field {
-    background-color: yellow;
+    /* background-color: yellow; */
     width: 100%;
     height: 200px;
     display: flex;
@@ -74,11 +98,12 @@ div#opponent div#field {
 
 
 div#timer {
-    line-height: 97vh;
+    line-height: 95vh;
 }
 
 div#timer p {
     text-align: center;
+    font-size: 30px;
 }
 
 div#coin {
@@ -105,7 +130,7 @@ div#timer span.mana {
 
 
 div#player div#field {
-    background-color: yellow;
+    /* background-color: yellow; */
     width: 100%;
     height: 200px;
     display: flex;
@@ -116,7 +141,7 @@ div#player div#field {
 }
 
 div#player div#health {
-    background-color: red;
+    /* background-color: red; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -127,7 +152,7 @@ div#player div#health {
 }
 
 div#player div#cards {
-    background-color: yellow;
+    /* background-color: yellow; */
     width: 100%;
     height: 200px;
     display: flex;
@@ -138,7 +163,7 @@ div#player div#cards {
 }
 
 div#player div#name {
-    background-color: cyan;
+    /* background-color: cyan; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -151,22 +176,35 @@ div#player div#name {
 
 
 div.card {
-    background-color: lightgreen;
+    /* background-color: rgb(36, 58, 36); */
     margin: 10px;
     padding: 10px;
     width: 80px;
     height: 160px;
     flex-direction: row;
+    border-radius: 5px;
+
+    background: url(../img/card.png), rgba(0, 0, 0, 0.562); 
+}
+
+div.card p {
+    color: white;
 }
 
 div.card p.name {
     text-align: center;
+    margin-top: 10px;
 }
 
 div.card div.row {
-    margin-top: 50px;
+    margin-top: 40px;
     bottom: 0px;
     font-size: 11px;
+}
+
+div.card div.row img {
+    width: 15px;
+    height: 15px;
 }
 
 

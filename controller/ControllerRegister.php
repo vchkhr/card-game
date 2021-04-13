@@ -35,7 +35,7 @@ class ControllerRegister
         $userDb->login = $login;
         if (!$userDb->isEmpty()) {
             $userDb->find($userDb->login);
-            echo $userDb->password;
+            // echo $userDb->password;
             if (!$this->isPasswordCorrect($userDb->password, $password)) {
 
                 $this->notify('Incorrect password');

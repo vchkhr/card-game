@@ -259,7 +259,7 @@ function gameTimer() {
 function selectRandomCard(whom) {
     const card = CARDS_LIBRARY[Math.floor(Math.random() * CARDS_LIBRARY.length)];
 
-    document.querySelector("div#" + whom + " div#cards").insertAdjacentHTML("beforeend", '<div id="card' + CARD_ID + '" class="card"><p class="name">' + card['name'] + '</p><div class="row"><p class="health">HEALTH: <span id="health">' + card['health'] + '</span></p><p class="attack">ATTACK: <span id="attack">' + card['attack'] + '</span></p><p class="mana">MANA: <span id="mana">' + card['mana'] + '</span></p></div></div>')
+    document.querySelector("div#" + whom + " div#cards").insertAdjacentHTML("beforeend", '<div id="card' + CARD_ID + '" class="card"><p class="name">' + card['name'] + '</p><div class="row"><p class="health"><img src="./res/img/heart.gif"> <span id="health">' + card['health'] + '</span></p><p class="attack"><img src="./res/img/sword.png"> <span id="attack">' + card['attack'] + '</span></p><p class="mana"><img src="./res/img/mana.png"> <span id="mana">' + card['mana'] + '</span></p></div></div>')
 
     CARD_ID += 1
 
@@ -279,6 +279,8 @@ function cardsAtStart() {
 setTimeout(function() {
     document.querySelector("div#coin").classList.add("hidden")
     document.querySelector("div#timer").classList.remove("hidden")
+    document.querySelector("div#opponent").classList.remove("hidden")
+    document.querySelector("div#player").classList.remove("hidden")
 
     if (Math.floor(Math.random() * 2) == 1) {
         changePlayer()
@@ -289,5 +291,5 @@ setTimeout(function() {
 
     updateMana()
     cardsAtStart()
-}, 2000)
+}, 1)
 

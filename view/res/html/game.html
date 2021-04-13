@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./res/css/styleGame.css">
 </head>
 <body>
-    <div id="opponent">
+    <div id="opponent" class="hidden">
         <div id="name">
             <img src="#PLAYER_2_IMG#">
             <p>#PLAYER_2_NAME#</p>
@@ -15,7 +15,8 @@
             
         </div>
         <div id="health">
-            <p>Health: <span>#PLAYER_2_HEALTH#</span></p>
+            <img src="./res/img/heart.gif">
+            <p><span>#PLAYER_2_HEALTH#</span></p>
         </div>
         <div id="field">
             
@@ -46,12 +47,13 @@
         </form>
     </div>
 
-    <div id="player">
+    <div id="player" class="hidden">
         <div id="field">
 
         </div>
         <div id="health">
-            <p>Health: <span>#PLAYER_1_HEALTH#</span></p>
+            <img src="./res/img/heart.gif">
+            <p><span>#PLAYER_1_HEALTH#</span></p>
         </div>
         <div id="cards">
             
