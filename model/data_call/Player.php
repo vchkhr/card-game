@@ -21,4 +21,13 @@ class Player
         $this->imgUrl = $imgUrl;
     }
 
+    public function printCard()
+    {
+        echo "User card:";
+        print_r($this->cards);
+//        foreach ($this->cards as $card){
+//            echo "$card <br>";
+//        }
+    }
+
 }

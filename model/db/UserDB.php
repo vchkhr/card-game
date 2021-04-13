@@ -11,7 +11,7 @@ class UserDB extends Model
 
     public function __construct()
     {
-        parent::__construct("users");
+        parent::__construct("players");
     }
 
     public function __destruct()
@@ -66,7 +66,7 @@ class UserDB extends Model
     {
         $request = "
                     SELECT 1 as isntEmpty
-                    FROM users
+                    FROM players
                     WHERE login =  '$this->login';";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
@@ -76,7 +76,7 @@ class UserDB extends Model
 
     public function insert()
     {
-        $request = "INSERT INTO users(login,password, fullName,emailUser)
+        $request = "INSERT INTO players(login,password, fullName,emailUser)
         VALUE ('$this->login','$this->password','$this->full_name','$this->email_address');";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
@@ -84,7 +84,7 @@ class UserDB extends Model
 
     public function update()
     {
-        $request = "UPDATE users SET  login = '$this->login' , password = '$this->password' , full_name = '$this->full_name' , email_address = '$this->email_address'  WHERE login = '$this->login';";
+        $request = "UPDATE players SET  login = '$this->login' , password = '$this->password' , full_name = '$this->full_name' , email_address = '$this->email_address'  WHERE login = '$this->login';";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
     }
