@@ -1,16 +1,22 @@
-const TIME_FOR_ONE_MOVE = 1
+const TIME_FOR_ONE_MOVE = 5
 const MANA_MAX = 6
+const GAME_MODE = 1 // 0 - multiplayer
+                    // 1 - two players on one computer
+                    // 2 - one player with a bot
 
 const CARDS_AT_START = 3
 const CARDS_MAX = 10
 const CARDS_FIELD_MAX = CARDS_MAX
 let CARDS_PLAYER = CARDS_AT_START
+let CARDS_OPPONENT = CARDS_AT_START
 let CARDS_FIELD_PLAYER = 0
+let CARDS_FIELD_OPPONENT = 0
 
 let CURRENT_PLAYER = 0
 
 let MANA = 0
 let MANA_THIS_MOVE = MANA
+let GAME_TIME
 
 let CARD_ID = 0
 let CARDS_LIBRARY = [
@@ -31,41 +37,92 @@ let CARDS_LIBRARY = [
 let useCard = function(e) {
     const cost = this.querySelector("p.mana span#mana").innerHTML
 
-    if (CURRENT_PLAYER != 0 || cost > MANA_THIS_MOVE || CARDS_FIELD_PLAYER >= CARDS_FIELD_MAX) {
+    if (GAME_MODE != 1 && CURRENT_PLAYER != 0) {
         return
     }
 
-    document.querySelector("div#player div#field").insertAdjacentHTML("beforeend", "<div class='card'>" + this.innerHTML + "</div>")
+    if (CURRENT_PLAYER == 0) {
+        if (cost > MANA_THIS_MOVE || CARDS_FIELD_PLAYER >= CARDS_FIELD_MAX) {
+            return
+        }
 
-    document.querySelector("div#player div#cards div.card#" + this.id).remove()
+        document.querySelector("div#player div#field").insertAdjacentHTML("beforeend", "<div class='card'>" + this.innerHTML + "</div>")
 
-    MANA_THIS_MOVE -= cost
+        document.querySelector("div#player div#cards div.card#" + this.id).remove()
 
-    document.querySelector("div#timer span.mana span#mana").innerHTML = MANA_THIS_MOVE
+        MANA_THIS_MOVE -= cost
 
-    CARDS_PLAYER -= 1
-    CARDS_FIELD_PLAYER += 1
+        document.querySelector("div#timer span.mana span#mana").innerHTML = MANA_THIS_MOVE
 
-    let formdata = new FormData()
-    formdata.append("player", "player")
-    formdata.append("card", this.id.replace("card", ""))
+        CARDS_PLAYER -= 1
+        CARDS_FIELD_PLAYER += 1
+    }
+    else {
+        if (cost > MANA_THIS_MOVE || CARDS_FIELD_OPPONENT >= CARDS_FIELD_MAX) {
+            return
+        }
 
-    let ajax = new XMLHttpRequest()
-    ajax.open("POST", "index.php", true)
-    ajax.send(formdata)
+        document.querySelector("div#opponent div#field").insertAdjacentHTML("beforeend", "<div class='card'>" + this.innerHTML + "</div>")
+
+        document.querySelector("div#opponent div#cards div.card#" + this.id).remove()
+
+        MANA_THIS_MOVE -= cost
+
+        document.querySelector("div#timer span.mana span#mana").innerHTML = MANA_THIS_MOVE
+
+        CARDS_OPPONENT -= 1
+        CARDS_FIELD_OPPONENT += 1
+    }
 }
 
 function updateCardsActions() {
-    document.querySelectorAll("div#player div#cards div.card").forEach(function(e) {
+    document.querySelectorAll("div#cards div.card").forEach(function(e) {
         e.removeEventListener("click", useCard)
     })
 
-    document.querySelectorAll("div#player div#cards div.card").forEach(function(e) {
-        e.addEventListener("click", useCard)
-    })
+    if (CURRENT_PLAYER == 0) {
+        document.querySelectorAll("div#player div#cards div.card").forEach(function(e) {
+            e.addEventListener("click", useCard)
+        })
+    }
+    else  if (GAME_MODE == 1) {
+        document.querySelectorAll("div#opponent div#cards div.card").forEach(function(e) {
+            e.addEventListener("click", useCard)
+        })
+    }
+}
+
+function makeDamage() {
+    if (CURRENT_PLAYER == 0) {
+        // let health = document.querySelector("div#opponent div#health p span").innerHTML
+        // document.querySelector("div#opponent div#health p span").innerHTML = health
+        // CURRENT_DAMAGE = 0
+
+        // let formdata = new FormData()
+        // formdata.append("player", "player")
+        // formdata.append("card", this.id.replace("card", ""))
+
+        // let ajax = new XMLHttpRequest()
+        // ajax.open("POST", "index.php", true)
+        // ajax.send(formdata)
+
+        document.querySelectorAll("div#player div#cards div.card").forEach(function(e) {
+            damage = e.querySelector("p.attack span#attack")
+
+            for (let i = damage; i >= 0;) {
+                let opCard = document.querySelector("div#opponent div#cards div.card")
+                let opCardHealth = opCard.querySelector("p.health span#health")
+                
+                i -= opCardHealth.innerHTML
+                opCardHealth.innerHTML
+            }
+        })
+    }
 }
 
 function changePlayer() {
+    makeDamage()
+
     if (CURRENT_PLAYER == 0) {
         document.querySelector("div#timer span.move").classList.add("hidden")
         CURRENT_PLAYER = 1
@@ -73,21 +130,32 @@ function changePlayer() {
     else {
         document.querySelector("div#timer span.move").classList.remove("hidden")
         CURRENT_PLAYER = 0
-        
-        updateMana()
 
-        if (CARDS_PLAYER <= CARDS_MAX) {
+        if (CARDS_PLAYER <= CARDS_MAX - 1) {
             selectRandomCard("player")
 
             CARDS_PLAYER += 1
         }
+
+        if (CARDS_OPPONENT <= CARDS_MAX - 1) {
+            selectRandomCard("opponent")
+
+            CARDS_OPPONENT += 1
+        }
     }
 
+    updateMana()
+
+    clearInterval(GAME_TIME)
     gameTimer()
+
+    updateCardsActions()
 }
 
 function updateMana() {
-    MANA += 1
+    if (CURRENT_PLAYER == 0) {
+        MANA += 1
+    }
 
     if (MANA >= MANA_MAX) {
         MANA = MANA_MAX
@@ -107,13 +175,11 @@ function gameTimer() {
     let time = TIME_FOR_ONE_MOVE
     updateGameTimer(time)
 
-    let gameTime = setInterval(function() {
+    GAME_TIME = setInterval(function() {
         time -= 1
         updateGameTimer(time)
 
         if (time <= 0) {
-            clearInterval(gameTime)
-
             changePlayer()
         }
     }, 1000)
@@ -122,7 +188,7 @@ function gameTimer() {
 function selectRandomCard(whom) {
     const card = CARDS_LIBRARY[Math.floor(Math.random() * CARDS_LIBRARY.length)];
 
-    document.querySelector("div#" + whom + " div#cards").insertAdjacentHTML("beforeend", '<div id="card' + CARD_ID + '" class="card"><p class="name">' + card['name'] + '</p><div class="row"><p class="health">HEALTH: <span id="health">' + card['health'] + '</span></p><p class="attack">ATTACK: <span id="attack">' + card['attack'] + '</span></p><p class="mana">MANA: <span id="mana">' + card['mana'] + '</span></p></div></div>')
+    document.querySelector("div#" + whom + " div#cards").insertAdjacentHTML("beforeend", '<div id="card' + CARD_ID + '" class="card"><p class="name">' + card['name'] + CARD_ID + '</p><div class="row"><p class="health">HEALTH: <span id="health">' + card['health'] + '</span></p><p class="attack">ATTACK: <span id="attack">' + card['attack'] + '</span></p><p class="mana">MANA: <span id="mana">' + card['mana'] + '</span></p></div></div>')
 
     CARD_ID += 1
 
@@ -142,4 +208,3 @@ function cardsAtStart() {
 updateMana()
 gameTimer()
 cardsAtStart()
- 
