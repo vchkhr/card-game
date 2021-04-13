@@ -6,12 +6,25 @@ html, body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* div#opponent div.card p {
     display: none;
 } */
+
+
+
+div#name img {
+    width: 35px;
+    height: 35px;
+    margin-top: 7.5px;
+    margin-right: 7.5px;
+}
+
+div#name p {
+    line-height: 17.5px;
+}
 
 
 
@@ -66,6 +79,15 @@ div#timer {
 
 div#timer p {
     text-align: center;
+}
+
+div#coin {
+    display: table-cell;
+    height: 99vh;
+    text-align: center;
+    width: 97vw;
+    vertical-align: middle;
+
 }
 
 div#timer span.move span.current {
@@ -145,4 +167,74 @@ div.card div.row {
     margin-top: 50px;
     bottom: 0px;
     font-size: 11px;
+}
+
+
+
+div#game-over {
+    margin-top: 100px;
+    text-align: center;
+}
+
+div#game-over p.win {
+    color: green;
+    font-size: 20px;
+}
+
+div#game-over p.lose {
+    color: red;
+    font-size: 20px;
+}
+
+
+
+input[type="text"],
+input[type="password"] {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #AAA;
+    font-family: 'RocknRoll One', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-bottom: 2px solid #a01616;
+    color: #a01616;
+    transition: 0.2s ease;
+}
+
+input[type="submit"] {
+    margin-top: 28px;
+    width: 120px;
+    height: 32px;
+    background: #a01616;
+    border: none;
+    border-radius: 2px;
+    color: #FFF;
+    font-family: 'RocknRoll One', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.1s ease;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    opacity: 0.8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+}
+
+input[type="submit"]:active {
+    opacity: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
 }

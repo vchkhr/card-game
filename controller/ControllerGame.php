@@ -1,6 +1,5 @@
 <?php
 
-
 class ControllerGame
 {
     public $arrayHeroes = array();

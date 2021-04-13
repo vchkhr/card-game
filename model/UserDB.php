@@ -1,6 +1,5 @@
 <?php
 
-
 class UserDB extends Model
 {
     public $login;
@@ -26,7 +25,7 @@ class UserDB extends Model
                 $stmt = $this->connection->connection->prepare("SELECT * FROM $this->table  WHERE login = '$login';");
                 $stmt->execute();
                 $res = $stmt->fetch(PDO::FETCH_ASSOC);
-//                print_r($res);
+                // print_r($res);
                 $this->login = $res['login'];
                 $this->password = $res['password'];
                 $this->full_name = $res['fullName'];
@@ -88,5 +87,4 @@ class UserDB extends Model
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
     }
-
 }

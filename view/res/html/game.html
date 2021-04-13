@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="./res/css/styleGame.css">
 </head>
 <body>
-
     <div id="opponent">
         <div id="name">
+            <img src="#PLAYER_2_IMG#">
             <p>#PLAYER_2_NAME#</p>
         </div>
         <div id="cards">
@@ -22,9 +22,11 @@
         </div>
     </div>
 
-
+    <div id="coin">
+        <img src="./res/img/coin.gif">
+    </div>
     
-    <div id="timer">
+    <div id="timer" class="hidden">
         <p>
             <span class="move"><span class="current">YOUR MOVE!</span> | </span>
             <span class="timer">TIME: <span id="timer"></span></span>
@@ -33,7 +35,16 @@
         </p>
     </div>
 
+    <div id="game-over" class="hidden">
+        <p>Game Over</p>
+        <p class="win hidden">You win!</p>
+        <p class="lose hidden">You lose!</p>
 
+        <form method="post">
+            <input type="text" name="userCard" class="hidden">
+            <input type="submit">
+        </form>
+    </div>
 
     <div id="player">
         <div id="field">
@@ -46,11 +57,11 @@
             
         </div>
         <div id="name">
+            <img src="#PLAYER_1_IMG#">
             <p>#PLAYER_1_NAME#</p>
         </div>
     </div>
 
     <script src="./res/js/game.js"></script>
-
 </body>
 </html>

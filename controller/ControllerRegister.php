@@ -1,6 +1,5 @@
 <?php
 
-
 class ControllerRegister
 {
     private $manager;
@@ -81,5 +80,4 @@ class ControllerRegister
                 alert('$massage')
             </SCRIPT>";
     }
-
 }

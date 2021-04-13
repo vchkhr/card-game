@@ -1,4 +1,5 @@
 <?php
+
 require_once("NavigationManager.php");
 require_once("controller/ControllerRegister.php");
 require_once("model/db/Model.php");

@@ -1,6 +1,5 @@
 <?php
 
-
 class Player
 {
     public $hp;
@@ -14,11 +13,10 @@ class Player
      * @param $name
      * @param $imgUrl
      */
-    public function __construct($hp, $name, $imgUrl)
+    public function __construct($hp, $name, $imgUrl = "./res/img/profile.png")
     {
         $this->hp = $hp;
         $this->name = $name;
         $this->imgUrl = $imgUrl;
     }
-
 }

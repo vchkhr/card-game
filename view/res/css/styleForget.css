@@ -1,26 +1,34 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(https://fonts.googleapis.com/css?family=RocknRoll+One:400);
+
 *:focus {
     outline: none;
 }
+
+html, body {
+    margin: 0px;
+    font-family: 'RocknRoll One';
+}
+
 body {
     margin: 0;
     padding: 0;
-    background: #DDD;
     font-size: 16px;
     color: #222;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'RocknRoll One', sans-serif;
     font-weight: 300;
 }
+
 #login-box {
     text-align:center;
     position: relative;
     margin: 5% auto;
-    width: 350px;
-    height: 400px;
+    width: 300px;
+    height: 430px;
     background: #FFF;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
+
 .left {
     position: absolute;
     top: 0;
@@ -29,11 +37,13 @@ body {
     width: 300px;
     height: 400px;
 }
+
 h1 {
     margin: 0 0 20px 0;
     font-weight: 300;
     font-size: 28px;
 }
+
 input[type="text"],
 input[type="password"] {
     display: block;
@@ -44,37 +54,41 @@ input[type="password"] {
     height: 32px;
     border: none;
     border-bottom: 1px solid #AAA;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'RocknRoll One', sans-serif;
     font-weight: 400;
     font-size: 15px;
     transition: 0.2s ease;
 }
+
 input[type="text"]:focus,
 input[type="password"]:focus {
-    border-bottom: 2px solid #16A085;
-    color: #16A085;
+    border-bottom: 2px solid #a01616;
+    color: #a01616;
     transition: 0.2s ease;
 }
+
 input[type="submit"] {
     margin-top: 28px;
     width: 120px;
     height: 32px;
-    background: #16A085;
+    background: #a01616;
     border: none;
     border-radius: 2px;
     color: #FFF;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'RocknRoll One', sans-serif;
     font-weight: 500;
     text-transform: uppercase;
     transition: 0.1s ease;
     cursor: pointer;
 }
+
 input[type="submit"]:hover,
 input[type="submit"]:focus {
     opacity: 0.8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     transition: 0.1s ease;
 }
+
 input[type="submit"]:active {
     opacity: 1;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);

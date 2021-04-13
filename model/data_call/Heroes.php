@@ -1,6 +1,5 @@
 <?php
 
-
 class Heroes
 {
     public $name;

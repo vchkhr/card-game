@@ -1,6 +1,5 @@
 <?php
 
-
 class User
 {
     public $login;
@@ -25,6 +24,4 @@ class User
         $this->email_address = $email_address;
         $this->isAdmin = $isAdmin;
     }
-
-
 }

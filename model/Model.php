@@ -1,9 +1,7 @@
 <?php
 
-
 abstract class Model
 {
-
     protected $connection;
     protected $table;
 
@@ -33,5 +31,4 @@ abstract class Model
     abstract protected function insert();
 
     abstract protected function update();
-
 }

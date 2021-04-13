@@ -23,37 +23,49 @@ $manager->putScreen('adminCard', $adminCard);
 $manager->putScreen('userCard', $userCard);
 $manager->putScreen('game', $game);
 
-
-//print_r($manager->arrFragment);
+// print_r($manager->arrFragment);
 $screenController = new ControllerRegister($manager);
 $manager->renderBy('register');
 
 if (isset($_POST['registerUser'])) {
     if ($_POST['registerUser']['password'] == $_POST['registerUser']['confirmPassword']) {
         $screenController->register(arrayToUser($_POST['registerUser']));
-    }else{
+    }
+    else {
         notify('Incorrect confirm password');
     }
-} elseif (isset($_POST['loginUser'])) {
+}
+elseif (isset($_POST['loginUser'])) {
     $screenController->login($_POST['loginUser']['login'], $_POST['loginUser']['password']);
-} elseif (isset($_POST['forgetLogin'])) {
+}
+elseif (isset($_POST['forgetLogin'])) {
     $screenController->forget($_POST['forgetLogin']);
-} elseif (isset($_POST['forger'])) {
+}
+elseif (isset($_POST['forger'])) {
     $manager->renderBy('forget');
-} elseif (isset($_POST['register'])) {
+}
+elseif (isset($_POST['register'])) {
     $manager->renderBy('register');
-} elseif (isset($_POST['login'])) {
+}
+elseif (isset($_POST['login'])) {
     $manager->renderBy('login');
-} elseif (isset($_POST['game'])) {
+}
+elseif (isset($_POST['userCard'])) {
+    $manager->renderBy('userCard');
+}
+elseif (isset($_POST['game'])) {
     $manager->changeScreen('game');
 
-    $player1 = new Player(30, "pl1", null);
-    $player2 = new Player(30, "pl2", null);
+    $player1 = new Player(30, "pl1");
+    $player2 = new Player(30, "pl2");
 
     $game = new ControllerGame(player1, player2);
 
     $manager->bind("#PLAYER_1_NAME#", $player1->name);
     $manager->bind("#PLAYER_2_NAME#", $player2->name);
+
+    $manager->bind("#PLAYER_1_IMG#", $player1->imgUrl);
+    $manager->bind("#PLAYER_2_IMG#", $player2->imgUrl);
 
     $manager->bind("#PLAYER_1_HEALTH#", $player1->hp);
     $manager->bind("#PLAYER_2_HEALTH#", $player2->hp);
