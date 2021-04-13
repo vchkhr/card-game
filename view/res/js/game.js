@@ -291,5 +291,4 @@ setTimeout(function() {
 
     updateMana()
     cardsAtStart()
-}, 1)
-
+}, 2000)
