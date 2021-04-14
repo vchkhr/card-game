@@ -2,7 +2,6 @@
 
 html { 
     background: url(../img/bkg.jpg) no-repeat center center fixed;
-    backdrop-filter: blur(500px);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

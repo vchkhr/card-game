@@ -1,4 +1,4 @@
-const TIME_FOR_ONE_MOVE = 3
+const TIME_FOR_ONE_MOVE = 10
 const MANA_MAX = 6
 const GAME_MODE = 1 // 0 - multiplayer
                     // 1 - two players on one computer
@@ -12,49 +12,27 @@ let CARDS_OPPONENT = CARDS_AT_START
 let CARDS_FIELD_PLAYER = 0
 let CARDS_FIELD_OPPONENT = 0
 
-let CURRENT_PLAYER = 0
+let CURRENT_PLAYER = "player"
 
-let MANA = 0
+let MANA = 1
 let MANA_THIS_MOVE = MANA
 let GAME_TIME
 
 let CARD_ID = 0
-let CARDS_LIBRARY = [
-    {
-        name: "A",
-        image: "",
-        health: 2, 
-        attack: 2,
-        mana: 1
-    },
-    {
-        name: "B", 
-        image: "",
-        health: 5, 
-        attack: 5,
-        mana: 2
-    }
-]
+
+let MOVES_COUNT = 0
 
 let useCard = function(e) {
     const cost = this.querySelector("p.mana span#mana").innerHTML
 
-    if (GAME_MODE != 1 && CURRENT_PLAYER != 0) {
+    if (GAME_MODE != 1 && CURRENT_PLAYER != "player") {
         return
     }
 
-    if (CURRENT_PLAYER == 0) {
+    if (CURRENT_PLAYER == "player") {
         if (cost > MANA_THIS_MOVE || CARDS_FIELD_PLAYER >= CARDS_FIELD_MAX) {
             return
         }
-
-        document.querySelector("div#player div#field").insertAdjacentHTML("beforeend", "<div class='card'>" + this.innerHTML + "</div>")
-
-        document.querySelector("div#player div#cards div.card#" + this.id).remove()
-
-        MANA_THIS_MOVE -= cost
-
-        document.querySelector("div#timer span.mana span#mana").innerHTML = MANA_THIS_MOVE
 
         CARDS_PLAYER -= 1
         CARDS_FIELD_PLAYER += 1
@@ -64,17 +42,17 @@ let useCard = function(e) {
             return
         }
 
-        document.querySelector("div#opponent div#field").insertAdjacentHTML("beforeend", "<div class='card'>" + this.innerHTML + "</div>")
-
-        document.querySelector("div#opponent div#cards div.card#" + this.id).remove()
-
-        MANA_THIS_MOVE -= cost
-
-        document.querySelector("div#timer span.mana span#mana").innerHTML = MANA_THIS_MOVE
-
         CARDS_OPPONENT -= 1
         CARDS_FIELD_OPPONENT += 1
     }
+
+    document.querySelector("div#" + CURRENT_PLAYER + " div#field").insertAdjacentHTML("beforeend", "<div id='" + this.id + "' class='card'>" + this.innerHTML + "</div>")
+    document.querySelector("div#" + CURRENT_PLAYER + " div#field div.card#" + this.id).style = this.style.cssText
+    document.querySelector("div#" + CURRENT_PLAYER + " div#cards div.card#" + this.id).remove()
+
+    MANA_THIS_MOVE -= cost
+
+    document.querySelector("div#timer span.mana span#mana").innerHTML = MANA_THIS_MOVE
 }
 
 function updateCardsActions() {
@@ -82,20 +60,61 @@ function updateCardsActions() {
         e.removeEventListener("click", useCard)
     })
 
-    if (CURRENT_PLAYER == 0) {
+    if (CURRENT_PLAYER == "player") {
         document.querySelectorAll("div#player div#cards div.card").forEach(function(e) {
             e.addEventListener("click", useCard)
         })
     }
-    else  if (GAME_MODE == 1) {
+    else if (GAME_MODE == 1) {
         document.querySelectorAll("div#opponent div#cards div.card").forEach(function(e) {
             e.addEventListener("click", useCard)
         })
     }
 }
 
+function gameOver() {
+    opponent = "player"
+    if (CURRENT_PLAYER == "player") {
+        opponent = "opponent"
+    }
+
+    let opHealth = document.querySelector("div#" + opponent + " div#health span")
+
+    opHealth.innerHTML = opHealth.innerHTML - 1
+
+    if (opHealth.innerHTML <= 0) {
+        if (CURRENT_PLAYER == "player") {
+            document.querySelector("div#" + opponent + " div#name img").src = "./res/img/lose.gif"
+            document.querySelector("div#player div#name img").src = "./res/img/win.gif"
+        }
+        else {
+            document.querySelector("div#opponent div#name img").src = "./res/img/win.gif"
+            document.querySelector("div#player div#name img").src = "./res/img/lose.gif"
+        }
+
+        setTimeout(function() {
+            document.querySelector("div#game-over").classList.remove("hidden")
+
+            if (CURRENT_PLAYER == "player") {
+                document.querySelector("div#game-over .win").classList.remove("hidden")
+            }
+            else {
+                document.querySelector("div#game-over .lose").classList.remove("hidden")
+            }
+
+            document.querySelector("div#player").classList.add("hidden")
+            document.querySelector("div#opponent").classList.add("hidden")
+            document.querySelector("div#timer").classList.add("hidden")
+
+            document.querySelector("div#game-over span#moves-count").innerHTML = MOVES_COUNT
+
+            clearInterval(GAME_TIME)
+        }, 2000)
+    }
+}
+
 function makeDamage() {
-    if (CURRENT_PLAYER == 0) {
+    if (CURRENT_PLAYER == "player") {
         // let formdata = new FormData()
         // formdata.append("player", "player")
         // formdata.append("card", this.id.replace("card", ""))
@@ -124,24 +143,9 @@ function makeDamage() {
                     }
                 }
                 else {
-                    let opHealth = document.querySelector("div#opponent div#health span")
+                    gameOver()
 
-                    opHealth.innerHTML = opHealth.innerHTML - 1
                     i--
-
-                    if (opHealth.innerHTML <= 0) {
-                        document.querySelector("div#opponent img").src = "./res/img/lose.gif"
-                        document.querySelector("div#player img").src = "./res/img/win.gif"
-
-                        setTimeout(function() {
-                            document.querySelector("div#game-over").classList.remove("hidden")
-                            document.querySelector("div#game-over .win").classList.remove("hidden")
-
-                            document.querySelector("div#opponent").classList.add("hidden")
-                            document.querySelector("div#timer").classList.add("hidden")
-                            document.querySelector("div#player").classList.add("hidden")
-                        }, 10000)
-                    }
                 }
             }
         })
@@ -167,24 +171,9 @@ function makeDamage() {
                     }
                 }
                 else {
-                    let opHealth = document.querySelector("div#player div#health span")
+                    gameOver()
 
-                    opHealth.innerHTML = opHealth.innerHTML - 1
                     i--
-
-                    if (opHealth.innerHTML <= 0) {
-                        document.querySelector("div#opponent img").src = "./res/img/win.gif"
-                        document.querySelector("div#player img").src = "./res/img/lose.gif"
-
-                        setTimeout(function() {
-                            document.querySelector("div#game-over").classList.remove("hidden")
-                            document.querySelector("div#game-over .lose").classList.remove("hidden")
-    
-                            document.querySelector("div#player").classList.add("hidden")
-                            document.querySelector("div#timer").classList.add("hidden")
-                            document.querySelector("div#opponent").classList.add("hidden")
-                        }, 10000)
-                    }
                 }
             }
         })
@@ -194,13 +183,13 @@ function makeDamage() {
 function changePlayer() {
     makeDamage()
 
-    if (CURRENT_PLAYER == 0) {
+    if (CURRENT_PLAYER == "player") {
         document.querySelector("div#timer span.move").classList.add("hidden")
-        CURRENT_PLAYER = 1
+        CURRENT_PLAYER = "opponent"
     }
     else {
         document.querySelector("div#timer span.move").classList.remove("hidden")
-        CURRENT_PLAYER = 0
+        CURRENT_PLAYER = "player"
 
         if (CARDS_PLAYER <= CARDS_MAX - 1) {
             selectRandomCard("player")
@@ -221,10 +210,12 @@ function changePlayer() {
     gameTimer()
 
     updateCardsActions()
+
+    MOVES_COUNT++
 }
 
 function updateMana() {
-    if (CURRENT_PLAYER == 0) {
+    if (CURRENT_PLAYER == "player" && MOVES_COUNT > 0) {
         MANA += 1
     }
 
@@ -259,7 +250,9 @@ function gameTimer() {
 function selectRandomCard(whom) {
     const card = CARDS_LIBRARY[Math.floor(Math.random() * CARDS_LIBRARY.length)];
 
-    document.querySelector("div#" + whom + " div#cards").insertAdjacentHTML("beforeend", '<div id="card' + CARD_ID + '" class="card"><p class="name">' + card['name'] + '</p><div class="row"><p class="health"><img src="./res/img/heart.gif"> <span id="health">' + card['health'] + '</span></p><p class="attack"><img src="./res/img/sword.png"> <span id="attack">' + card['attack'] + '</span></p><p class="mana"><img src="./res/img/mana.png"> <span id="mana">' + card['mana'] + '</span></p></div></div>')
+    document.querySelector("div#" + whom + " div#cards").insertAdjacentHTML("beforeend", '<div id="card' + CARD_ID + '" class="card"><div class="row"><p class="health"><img src="./res/img/heart.gif"> <span id="health">' + card['health'] + '</span></p><p class="attack"><img src="./res/img/sword.png"> <span id="attack">' + card['attack'] + '</span></p><p class="mana"><img src="./res/img/mana.png"> <span id="mana">' + card['mana'] + '</span></p></div><p class="name">' + card['name'] + '</p></div>')
+
+    document.querySelector("div#card" + CARD_ID).style.background = "url(./res/img/card.png), url('" + card["image"] + "'), rgba(0, 0, 0, 0.562)"
 
     CARD_ID += 1
 
