@@ -1,5 +1,6 @@
 <?php
 
+
 class UserDB extends Model
 {
     public $login;
@@ -7,10 +8,11 @@ class UserDB extends Model
     public $full_name;
     public $email_address;
     public $isAdmin;
+    public $table = 'players';
 
     public function __construct()
     {
-        parent::__construct("users");
+        parent::__construct();
     }
 
     public function __destruct()
@@ -25,7 +27,7 @@ class UserDB extends Model
                 $stmt = $this->connection->connection->prepare("SELECT * FROM $this->table  WHERE login = '$login';");
                 $stmt->execute();
                 $res = $stmt->fetch(PDO::FETCH_ASSOC);
-                // print_r($res);
+//                print_r($res);
                 $this->login = $res['login'];
                 $this->password = $res['password'];
                 $this->full_name = $res['fullName'];
@@ -65,7 +67,7 @@ class UserDB extends Model
     {
         $request = "
                     SELECT 1 as isntEmpty
-                    FROM users
+                    FROM players
                     WHERE login =  '$this->login';";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
@@ -75,7 +77,7 @@ class UserDB extends Model
 
     public function insert()
     {
-        $request = "INSERT INTO users(login,password, fullName,emailUser)
+        $request = "INSERT INTO players(login,password, fullName,emailUser)
         VALUE ('$this->login','$this->password','$this->full_name','$this->email_address');";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
@@ -83,8 +85,9 @@ class UserDB extends Model
 
     public function update()
     {
-        $request = "UPDATE users SET  login = '$this->login' , password = '$this->password' , full_name = '$this->full_name' , email_address = '$this->email_address'  WHERE login = '$this->login';";
+        $request = "UPDATE players SET  login = '$this->login' , password = '$this->password' , full_name = '$this->full_name' , email_address = '$this->email_address'  WHERE login = '$this->login';";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
     }
+
 }

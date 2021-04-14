@@ -1,6 +1,7 @@
 <?php
 
 class DatabaseConnection {
+
     public $connection;
 
     public function __construct($host, $port, $username, $password, $database)
