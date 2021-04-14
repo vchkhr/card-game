@@ -32,28 +32,28 @@ class ControllerRegister
 
     public function login($login, $password)
     {
-        $userDb = new UserDB();
-        $userDb->login = $login;
-        if (!$userDb->isEmpty()) {
-            $userDb->find($userDb->login);
-            echo $userDb->password;
-            if (!$this->isPasswordCorrect($userDb->password, $password)) {
+        // $userDb = new UserDB();
+        // $userDb->login = $login;
+        // if (!$userDb->isEmpty()) {
+        //     $userDb->find($userDb->login);
+        //     echo $userDb->password;
+        //     if (!$this->isPasswordCorrect($userDb->password, $password)) {
 
-                $this->notify('Incorrect password');
-            } else {
-                if ($userDb->isAdmin) {
-                    $this->manager->changeScreen('adminCard');
-                    $this->manager->bind("#USER_NAME#", $userDb->login);
-                    $this->manager->render();
-                } else {
+        //         $this->notify('Incorrect password');
+        //     } else {
+        //         if ($userDb->isAdmin) {
+        //             $this->manager->changeScreen('adminCard');
+        //             $this->manager->bind("#USER_NAME#", $userDb->login);
+        //             $this->manager->render();
+        //         } else {
                     $this->manager->changeScreen('userCard');
                     $this->manager->bind("#USER_NAME#", $userDb->login);
                     $this->manager->render();
-                }
-            }
-        } else {
-            $this->notify('Unknown user');
-        }
+        //         }
+        //     }
+        // } else {
+        //     $this->notify('Unknown user');
+        // }
     }
 
     public function forget($email)

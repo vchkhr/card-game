@@ -87,15 +87,15 @@ div#coin {
 }
 
 div#timer span.move span.current {
-    color: green;
+    color: rgb(8, 151, 8);
 }
 
 div#timer span.timer {
-    color: red;
+    color: rgb(255, 25, 25);
 }
 
 div#timer span.mana {
-    color: blue;
+    color: rgb(60, 60, 255);
 }
 
 

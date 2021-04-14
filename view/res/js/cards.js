@@ -161,3 +161,7 @@ let CARDS_LIBRARY = [
         mana: 3
     }
 ]
+
+// CARDS_LIBRARY.forEach(function(card) {
+//     card.mana = 1
+// })

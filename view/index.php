@@ -67,6 +67,10 @@ if (isset($_POST['registerUser'])) {
     $screenController->isWait($_POST['checkSearcherUser']);
 } elseif (isset($_POST['game'])) {
 //    if ($screenController->startBattle($_POST['startGameLogin'])){
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: *");
+    header("Access-Control-Allow-Headers: *");
+    
         $manager->changeScreen('game');
         $manager->bind("#USER_NAME#", '$userDb->login');
         $manager->render();

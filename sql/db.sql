@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS player_wait
     waitingTime INT,
     data VARCHAR(1000),
     FOREIGN KEY (loginUser) REFERENCES players (login) ON DELETE CASCADE
-)
+);
 
 CREATE TABLE IF NOT EXISTS battle_card
 (

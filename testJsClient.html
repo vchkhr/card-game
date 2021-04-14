@@ -7,106 +7,39 @@
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    let xhr = new XMLHttpRequest(); // у конструктора нет аргументов
-    xhr.open('POST', "http://10.11.12.4:8080/test.php")
-    // "http://10.11.12.4:8080/test.php"
-    // xhr.send('name=Hello')
-    xhr.send("qwertyuio;");
-    xhr.onload = ()=>{
-        if (xhr.status != 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
-            alert(`Ошибка ${xhr.status}: ${xhr.statusText}`); // Например, 404: Not Found
-        } else { // если всё прошло гладко, выводим результат
-            alert(`Готово, получили ${xhr.response.length} байт`); // response -- это ответ сервера
-            let responseObj = xhr.response;
-            alert(responseObj);
-            // alert(`Response: ${xhr.response} `); // response -- это ответ сервера
+    sendData(
+        {name: 'Hello'},
+        (data) => {
+            alert(data)
         }
+    )
+
+    function sendData(data, callback) {
+        const XHR = new XMLHttpRequest(),
+            FD  = new FormData();
+        // Push our data into our FormData object
+        for( name in data ) {
+            FD.append( name, data[ name ] );
+        }
+        // Define what happens on successful data submission
+        XHR.addEventListener( 'load', function( event ) {
+            alert( 'Yeah! Data sent and response loaded.' );
+            if (XHR.status != 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
+                alert(`Ошибка ${XHR.status}: ${XHR.statusText}`); // Например, 404: Not Found
+            } else { // если всё прошло гладко, выводим результат
+                let responseObj = XHR.response;
+                callback(responseObj);
+            }
+        } );
+        // Define what happens in case of error
+        // XHR.addEventListener(' error', function( event ) {
+        //     alert( 'Oops! Something went wrong.' );
+        // } );
+        // Set up our request
+        XHR.open( 'POST', 'http://10.11.6.2:8080/test.php' );
+        // Send our FormData object; HTTP headers are set automatically
+        XHR.send( FD );
     }
-
-    // fetch("http://10.11.12.4:8080/test.php",{
-    //     type: 'POST',
-    //     crossDomain: true,
-    //     mode: 'cors',
-    //     data: 'name=Hello'
-    // }).then((data)=>{
-    //     console.log(data)
-    //     return data.json()
-    // }).then((json)=>{
-    //     console.log(json)
-    // })
-
-    // fetch('http://api.openweathermap.org/data/2.5/onecall?lat=49.98654795153299&lon=36.24150062428471&lang=eu&appid=82a380452823fd4c5708c2d3e229ff35')
-    //     .then((data)=>{
-    //         console.log(data)
-    //         return data.json()
-    // }).then((json)=>{
-    //     console.log(json)
-    // })
-        // .then((json)=>{
-        // console.log(json)
-    // })
-        // .then((data.json)=>{
-
-    // })
-
-    // $.ajax({
-    //     type: 'POST',
-    //     url: 'http://10.11.6.2:8080/test.php',
-    //     crossDomain: true,
-    //     dataType: "text",
-    //     mode: 'cors',
-    //     credentials: 'include',
-    //     data: 'name=Hello',
-    //     success: function (data) {
-    //         alert(data)
-    //         console.log(data)
-    //     }
-    // });
-
-    // ------------------------------------------------------------------------------------------------------------
-
-    // // 1. Создаём новый XMLHttpRequest-объект
-    //
-    // let xhr = new XMLHttpRequest();
-    //
-    // // 2. Настраиваем его: GET-запрос по URL /article/.../load
-    // xhr.open('POST', 'http://10.11.6.2:8080/test.php', true);
-    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //
-    // xhr.onreadystatechange = function () {//Call a function when the state changes.
-    //     if (xhr.readyState == 4 && xhr.status == 200) {
-    //         alert(http.responseText);
-    //     }
-    // }
-    // xhr.body = "asd"
-    // xhr.mode = "no-cors"
-    // xhr.send();
-    // // 3. Отсылаем запрос
-    // // xhr.send();
-    //
-    // // 4. Этот код сработает после того, как мы получим ответ сервера
-    // xhr.onload = function () {
-    //     console.log(xhr.status)
-    //     if (xhr.status != 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
-    //         alert(`Ошибка ${xhr.status}: ${xhr.statusText}`); // Например, 404: Not Found
-    //     } else { // если всё прошло гладко, выводим результат
-    //         alert(`Готово, получили ${xhr.response.length} байт`); // response -- это ответ сервера
-    //     }
-    // };
-    //------------------------------------------------------------------------------------------------------------
-    // var http = new XMLHttpRequest();
-    // var url = 'get_data.php';
-    // var params = 'orem=ipsum&name=binny';
-    // http.open('POST', url, true);
-    //
-    // http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //
-    // http.onreadystatechange = function() {
-    //     if(http.readyState == 4 && http.status == 200) {
-    //         alert(http.responseText);
-    //     }
-    // }
-    // http.send(params);
 </script>
 </body>
 </html>
