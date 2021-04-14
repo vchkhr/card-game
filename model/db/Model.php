@@ -5,18 +5,18 @@ abstract class Model
 {
 
     protected $connection;
-    protected $table;
+//    protected $table;
 
-    public function __construct($table)
+    public function __construct()
     {
         $this->setConnection();
-        $this->setTable($table);
+//        $this->setTable($table);
     }
 
-    protected function setTable($table)
-    {
-        $this->table = $table;
-    }
+//    protected function setTable($table)
+//    {
+//        $this->table = $table;
+//    }
 
     protected function setConnection()
     {

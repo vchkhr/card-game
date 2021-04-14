@@ -1,3 +1,5 @@
+SET GLOBAL log_bin_trust_function_creators = 1;
+
 CREATE FUNCTION addBattleCard(login VARCHAR(50), id INT, hpCard INT, damageCard INT, manaCard INT,
                               cardCard VARCHAR(300)) RETURNS BOOLEAN
 BEGIN

@@ -8,10 +8,11 @@ class UserDB extends Model
     public $full_name;
     public $email_address;
     public $isAdmin;
+    public $table = 'players';
 
     public function __construct()
     {
-        parent::__construct("players");
+        parent::__construct();
     }
 
     public function __destruct()
