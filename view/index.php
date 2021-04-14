@@ -1,10 +1,29 @@
 <?php
 require_once("NavigationManager.php");
 require_once("../controller/ControllerRegister.php");
-require_once("../model/Model.php");
-require_once("../model/User.php");
-require_once("../model/UserDB.php");
-require_once("../model/DatabaseConnection.php");
+require_once("../model/db/Model.php");
+require_once("../model/db/User.php");
+require_once("../model/db/BattleDb.php");
+require_once("../model/db/UserDB.php");
+require_once("../model/db/PlayerWaitDb.php");
+require_once("../model/db/DatabaseConnection.php");
+//require_once("../model/");
+//require_once("../model/data_class/");
+require_once("../model/data_class/Battle.php");
+require_once("../model/data_class/BattleCard.php");
+require_once("../model/data_class/Heroes.php");
+require_once("../model/data_class/Player.php");
+//require_once("../model/data_class/");
+
+//$playerWaitDb = new PlayerWaitDb();
+//$playerWaitDb->removeUser('User1');
+////$playerWaitDb->addUser('User1','User1');
+////$playerWaitDb->addUser('User4','User1');
+//$playerWaitDb->removeUser('User4');
+//print_r($playerWaitDb->getUsers());
+////print_r();
+//$cardDb = new BattleDb();
+//$cardDb->finishBattle(5);
 
 $register = "./res/html/registration.html";
 $login = "./res/html/login.html";
@@ -21,15 +40,15 @@ $manager->putScreen('adminCard', $adminCard);
 $manager->putScreen('userCard', $userCard);
 $manager->putScreen('game', $game);
 
-
-//print_r($manager->arrFragment);
 $screenController = new ControllerRegister($manager);
+//print_r($manager->arrFragment);
+
 $manager->renderBy('register');
 
 if (isset($_POST['registerUser'])) {
     if ($_POST['registerUser']['password'] == $_POST['registerUser']['confirmPassword']) {
         $screenController->register(arrayToUser($_POST['registerUser']));
-    }else{
+    } else {
         notify('Incorrect confirm password');
     }
 } elseif (isset($_POST['loginUser'])) {
@@ -42,10 +61,16 @@ if (isset($_POST['registerUser'])) {
     $manager->renderBy('register');
 } elseif (isset($_POST['login'])) {
     $manager->renderBy('login');
+} elseif (isset($_POST['finderGame'])) {
+
+} elseif (isset($_POST['checkSearcherUser'])) {
+    $screenController->isWait($_POST['checkSearcherUser']);
 } elseif (isset($_POST['game'])) {
-    $manager->changeScreen('game');
-    $manager->bind("#USER_NAME#", $userDb->login);
-    $manager->render();
+//    if ($screenController->startBattle($_POST['startGameLogin'])){
+        $manager->changeScreen('game');
+        $manager->bind("#USER_NAME#", '$userDb->login');
+        $manager->render();
+//    }
 }
 
 function arrayToUser(array $arr)
@@ -53,7 +78,8 @@ function arrayToUser(array $arr)
     return new User($arr['login'], $arr['password'], $arr['fullName'], $arr['email'], 0);
 }
 
-function notify($massage){
+function notify($massage)
+{
     echo "
             <SCRIPT>
                 alert('$massage')

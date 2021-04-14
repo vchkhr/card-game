@@ -5,7 +5,7 @@ class Player
 {
     public $hp;
     public $name;
-    public $imgUrl;
+    public $imgUrl = "";
     public $cards = array();
 
     /**
@@ -18,7 +18,7 @@ class Player
     {
         $this->hp = $hp;
         $this->name = $name;
-        $this->imgUrl = $imgUrl;
+//        $this->imgUrl = $imgUrl;
     }
 
     public function printCard()
