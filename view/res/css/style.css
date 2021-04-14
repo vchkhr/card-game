@@ -1,0 +1,102 @@
+@import url(https://fonts.googleapis.com/css?family=RocknRoll+One:400);
+
+html { 
+    background: url(../img/bkg.jpg) no-repeat center center fixed;
+    backdrop-filter: blur(500px);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'RocknRoll One';
+}
+
+.hidden {
+    display: none !important;
+}
+
+div.box {
+    top: 0;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    margin: 5% auto;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.562);
+    width: 370px;
+}
+
+div#register-box {
+    height: 580px;
+}
+
+div#login-box {
+    height: 490px;
+}
+
+div#forgot-password {
+    height: 440px;
+}
+
+div#user-card {
+    height: 350px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 290px;
+    height: 32px;
+    border: none;
+    border-radius: 5px;
+    border-bottom: 1px solid #AAA;
+    font-family: 'RocknRoll One', sans-serif;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-bottom: 2px solid #a01616;
+    color: #a01616;
+    transition: 0.2s ease;
+    outline: none;
+}
+
+input[type="submit"] {
+    margin-top: 30px;
+    width: 180px;
+    height: 32px;
+    background: #a01616;
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    font-family: 'RocknRoll One', sans-serif;
+    text-transform: uppercase;
+    transition: 0.1s ease;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    opacity: 0.8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+}
+
+input[type="submit"]:active {
+    opacity: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+    outline: none;
+}

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create account</title>
-    <link rel="stylesheet" href="./res/css/styleRegister.css">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="./res/css/style.css">
 
     <script type="text/javascript">
         function validateEmail(email) {
@@ -39,22 +39,21 @@
     </script>
 </head>
 <body>
-    <div id="login-box" class="left">
-        <h1>Registration</h1>
+    <div id="register-box" class="box">
+        <h1>Create Account</h1>
 
         <form name="contact_form" method="post" onsubmit="return validate_form ();">
                 <input type="text" name="registerUser[login]" placeholder="Login" required>
                 <input id="textPassword" type="password" name="registerUser[password]" placeholder="Password" required>
-                <input id="textConfirmPassword" type="password" name="registerUser[confirmPassword]" placeholder="Confirm password" required>
+                <input id="textConfirmPassword" type="password" name="registerUser[confirmPassword]" placeholder="Confirm Password" required>
                 <input type="text" name="registerUser[fullName]" placeholder="Full name" required>
                 <input type="email" name="registerUser[email]" placeholder="Email" required>
 
-                <input type="submit">
-            <p id="textMessage"></p>
+                <input type="submit" value="Create Account">
         </form>
 
         <form method="post">
-            <input type="submit" name="login" value="Sign in" style="width: auto">
+            <input type="submit" name="login" value="Sign In Instead">
         </form>
     </div>
 </body>

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hearthstone</title>
+    <title>Playing Game</title>
+    <link rel="stylesheet" href="./res/css/style.css">
     <link rel="stylesheet" href="./res/css/styleGame.css">
 </head>
 <body>
@@ -36,14 +37,13 @@
         </p>
     </div>
 
-    <div id="game-over" class="hidden">
-        <p>Game Over</p>
-        <p class="win hidden">You win!</p>
-        <p class="lose hidden">You lose!</p>
+    <div id="game-over" class="box hidden">
+        <h1 class="win hidden">You Win!</h1>
+        <h1 class="lose hidden">You Lose!</h1>
 
         <form method="post">
             <input type="text" name="userCard" class="hidden">
-            <input type="submit">
+            <input type="submit" name="game" value="Exit"><br>
         </form>
     </div>
 

@@ -135,12 +135,12 @@ function makeDamage() {
 
                         setTimeout(function() {
                             document.querySelector("div#game-over").classList.remove("hidden")
-                            document.querySelector("div#game-over p.win").classList.remove("hidden")
+                            document.querySelector("div#game-over .win").classList.remove("hidden")
 
                             document.querySelector("div#opponent").classList.add("hidden")
                             document.querySelector("div#timer").classList.add("hidden")
                             document.querySelector("div#player").classList.add("hidden")
-                        }, 2000)
+                        }, 10000)
                     }
                 }
             }
@@ -178,12 +178,12 @@ function makeDamage() {
 
                         setTimeout(function() {
                             document.querySelector("div#game-over").classList.remove("hidden")
-                            document.querySelector("div#game-over p.lose").classList.remove("hidden")
+                            document.querySelector("div#game-over .lose").classList.remove("hidden")
     
                             document.querySelector("div#player").classList.add("hidden")
                             document.querySelector("div#timer").classList.add("hidden")
                             document.querySelector("div#opponent").classList.add("hidden")
-                        }, 2000)
+                        }, 10000)
                     }
                 }
             }

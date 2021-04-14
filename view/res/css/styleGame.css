@@ -1,36 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=RocknRoll+One:400);
-
-/* html {
-    min-height: 100%;
-    background: linear-gradient(rgba(255, 255, 0, 0.247), rgba(255, 255, 0, 0.062));
-} */
-
-html { 
-    background: url(../img/bkg.jpg) no-repeat center center fixed; 
-    backdrop-filter: blur(500px);
-;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-body {
-    margin: 0px;
-    padding: 0px;
-    font-family: 'RocknRoll One';
-}
-
-.hidden {
-    display: none !important;
-}
-
 /* div#opponent div.card p {
     display: none;
 } */
-
-
 
 div#name img {
     width: 35px;
@@ -214,12 +184,12 @@ div#game-over {
     text-align: center;
 }
 
-div#game-over p.win {
+div#game-over .win {
     color: green;
     font-size: 20px;
 }
 
-div#game-over p.lose {
+div#game-over .lose {
     color: red;
     font-size: 20px;
 }
