@@ -7,7 +7,7 @@ INSERT INTO players(login, password, fullName, emailUser) VALUE
     ('User6', 1, 'User', 'user0@sprint09.com');
 
 INSERT INTO battles(player1, player2) VALUE
-    ('User1', 'User2'),
+--     ('User1', 'User2'),
     ('User3', 'User5');
 
 INSERT INTO players(login, password, fullName, emailUser, isAdmin)

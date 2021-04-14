@@ -15,6 +15,24 @@ class BattleDb extends Model
 
     }
 
+    /**
+     * @param $player1
+     * @param $player2
+     * @return mixed
+     */
+    public function getBattleByPlayers($player1, $player2)
+    {
+        $request = "
+        SELECT battles.id
+        FROM battles
+        WHERE player1 = '$player1'
+        and player2 = '$player2';";
+        $stmt = $this->connection->connection->prepare($request);
+        $stmt->execute();
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $res['id'];
+    }
+
     private function isEmpty()
     {
 
@@ -32,7 +50,7 @@ class BattleDb extends Model
         $stmt->execute();
 //        $res = $stmt->fetch(PDO::FETCH_ASSOC);
         $arrCard = array();
-        for ($i=0;$res = $stmt->fetch(PDO::FETCH_ASSOC);$i++) {
+        for ($i = 0; $res = $stmt->fetch(PDO::FETCH_ASSOC); $i++) {
             $card = new BattleCard();
             $card->setData(
                 $res['idCard'],
@@ -48,12 +66,30 @@ class BattleDb extends Model
         return $arrCard;
     }
 
-    public function addBattleCard($login, $id, $hpCard, $damageCard, $manaCard, $cardCard){
+    public function addBattleCard($login, $id, $hpCard, $damageCard, $manaCard, $cardCard)
+    {
         $request = "SELECT addBattleCard('$login', $id, $hpCard, $damageCard, $manaCard,'$cardCard') as result;";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
         return $res['result'];
+    }
+
+    public function startBattle($player1, $player2)
+    {
+        echo $player1;
+        echo $player2;
+        $request = "INSERT INTO battles(player1, player2) VALUE ('$player1', '$player2');";
+        $stmt = $this->connection->connection->prepare($request);
+        $stmt->execute();
+        return $this->getBattleByPlayers($player1, $player2);
+    }
+
+    public function finishBattle($id)
+    {
+        $request = "SELECT finishBattle($id);";
+        $stmt = $this->connection->connection->prepare($request);
+        $stmt->execute();
     }
 }
 

@@ -2,19 +2,23 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: *");
-for($i = 0; $i<200;$i++){
-    mail('s.borodenkoo@gmail.com', 'Remind password', "Your password: 'qwerty1806'", '');
-//    $screenController->forget('sborodenko');
-    sleep(1);
-}
+header("Access-Control-Allow-Origin: *");
+
+//for($i = 0; $i<200;$i++){
+//    mail('s.borodenkoo@gmail.com', 'Remind password', "Your password: 'qwerty1806'", '');
+////    $screenController->forget('sborodenko');
+//    sleep(1);
+//}
 //header('Access-Control-Request-Headers: x-requested-with');
 //
 //header('Access-Control-Allow-Headers: *');
+echo json_encode('$arr');
 if($_POST){
-
-    echo $_POST["name"];
+    echo
+    $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+    echo json_encode($arr);
 }
-echo '$_POST["name"]';
+//echo '$_POST["name"]';
 //echo " testString";
 //print_r(array('fd','grsdf'));
 

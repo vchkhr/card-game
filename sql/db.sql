@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS battles
     CHECK (NOT player1 = player2)
 );
 
+CREATE TABLE IF NOT EXISTS player_wait
+(
+    loginUser VARCHAR(50) NOT NULL UNIQUE,
+    waitingTime INT,
+    data VARCHAR(1000),
+    FOREIGN KEY (loginUser) REFERENCES players (login) ON DELETE CASCADE
+)
+
 CREATE TABLE IF NOT EXISTS battle_card
 (
     idCard   INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -30,6 +38,6 @@ CREATE TABLE IF NOT EXISTS battle_card
     mana     INT                            NOT NULL,
     card     VARCHAR(1000)                  NOT NULL,
     FOREIGN KEY (idBattle) REFERENCES battles (id) ON DELETE CASCADE
-#     FOREIGN KEY (player) REFERENCES battles (player1, player2) ON DELETE CASCADE
-#     FOREIGN KEY (player) REFERENCES battles (player2) ON DELETE CASCADE
+-- #     FOREIGN KEY (player) REFERENCES battles (player1, player2) ON DELETE CASCADE
+-- #     FOREIGN KEY (player) REFERENCES battles (player2) ON DELETE CASCADE
 );

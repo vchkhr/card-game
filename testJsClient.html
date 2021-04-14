@@ -7,30 +7,61 @@
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    fetch("http://10.11.6.2:8080/test.php",{
-        type: 'POST',
-        crossDomain: true,
-        mode: 'cors',
-        data: 'name=Hello'
-    }).then((data)=>{
-        alert(data)
-        data.
-        console.log(data)
-    })
-
-    $.ajax({
-        type: 'POST',
-        url: 'http://10.11.6.2:8080/test.php',
-        crossDomain: true,
-        dataType: "text",
-        mode: 'cors',
-        credentials: 'include',
-        data: 'name=Hello',
-        success: function (data) {
-            alert(data)
-            console.log(data)
+    let xhr = new XMLHttpRequest(); // у конструктора нет аргументов
+    xhr.open('POST', "http://10.11.12.4:8080/test.php")
+    // "http://10.11.12.4:8080/test.php"
+    // xhr.send('name=Hello')
+    xhr.send("qwertyuio;");
+    xhr.onload = ()=>{
+        if (xhr.status != 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
+            alert(`Ошибка ${xhr.status}: ${xhr.statusText}`); // Например, 404: Not Found
+        } else { // если всё прошло гладко, выводим результат
+            alert(`Готово, получили ${xhr.response.length} байт`); // response -- это ответ сервера
+            let responseObj = xhr.response;
+            alert(responseObj);
+            // alert(`Response: ${xhr.response} `); // response -- это ответ сервера
         }
-    });
+    }
+
+    // fetch("http://10.11.12.4:8080/test.php",{
+    //     type: 'POST',
+    //     crossDomain: true,
+    //     mode: 'cors',
+    //     data: 'name=Hello'
+    // }).then((data)=>{
+    //     console.log(data)
+    //     return data.json()
+    // }).then((json)=>{
+    //     console.log(json)
+    // })
+
+    // fetch('http://api.openweathermap.org/data/2.5/onecall?lat=49.98654795153299&lon=36.24150062428471&lang=eu&appid=82a380452823fd4c5708c2d3e229ff35')
+    //     .then((data)=>{
+    //         console.log(data)
+    //         return data.json()
+    // }).then((json)=>{
+    //     console.log(json)
+    // })
+        // .then((json)=>{
+        // console.log(json)
+    // })
+        // .then((data.json)=>{
+
+    // })
+
+    // $.ajax({
+    //     type: 'POST',
+    //     url: 'http://10.11.6.2:8080/test.php',
+    //     crossDomain: true,
+    //     dataType: "text",
+    //     mode: 'cors',
+    //     credentials: 'include',
+    //     data: 'name=Hello',
+    //     success: function (data) {
+    //         alert(data)
+    //         console.log(data)
+    //     }
+    // });
 
     // ------------------------------------------------------------------------------------------------------------
 
