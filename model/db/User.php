@@ -17,6 +17,7 @@ class User
      * @param $email_address
      * @param $isAdmin
      */
+    
     public function __construct($login, $password, $full_name, $email_address, $isAdmin)
     {
         $this->login = $login;
@@ -25,6 +26,5 @@ class User
         $this->email_address = $email_address;
         $this->isAdmin = $isAdmin;
     }
-
 
 }

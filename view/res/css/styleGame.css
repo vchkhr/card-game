@@ -1,7 +1,3 @@
-/* div#opponent div.card p {
-    display: none;
-} */
-
 div#name img {
     width: 35px;
     height: 35px;
@@ -17,10 +13,8 @@ div#health img {
     width: 20px;
     height: 20px;
     padding-top: 17.5px;
-
+    padding-right: 5px;
 }
-
-
 
 div#opponent div#name {
     /* background-color: cyan; */
@@ -28,7 +22,6 @@ div#opponent div#name {
     height: 50px;
     display: flex;
     justify-content: center;
-
     position: fixed;
     top: 0px;
 }
@@ -39,7 +32,6 @@ div#opponent div#cards {
     height: 200px;
     display: flex;
     justify-content: center;
-
     position: fixed;
     top: 50px;
 }
@@ -50,7 +42,6 @@ div#opponent div#health {
     height: 50px;
     display: flex;
     justify-content: center;
-
     position: fixed;
     top: 250px;
 }
@@ -61,11 +52,9 @@ div#opponent div#field {
     height: 200px;
     display: flex;
     justify-content: center;
-
     position: fixed;
     top: 300px;
 }
-
 
 div#timer {
     line-height: 95vh;
@@ -83,7 +72,6 @@ div#coin {
     text-align: center;
     width: 97vw;
     vertical-align: middle;
-
 }
 
 div#timer span.move span.current {
@@ -94,11 +82,9 @@ div#timer span.timer {
     color: rgb(255, 25, 25);
 }
 
-div#timer span.mana {
+div#timer span.mana span.current {
     color: rgb(60, 60, 255);
 }
-
-
 
 div#player div#field {
     /* background-color: yellow; */
@@ -106,7 +92,6 @@ div#player div#field {
     height: 200px;
     display: flex;
     justify-content: center;
-
     position: fixed;
     bottom: 300px;
 }
@@ -117,7 +102,6 @@ div#player div#health {
     height: 50px;
     display: flex;
     justify-content: center;
-
     position: fixed;
     bottom: 250px;
 }
@@ -128,7 +112,6 @@ div#player div#cards {
     height: 200px;
     display: flex;
     justify-content: center;
-
     position: fixed;
     bottom: 50px;
 }
@@ -139,12 +122,9 @@ div#player div#name {
     height: 50px;
     display: flex;
     justify-content: center;
-
     position: fixed;
     bottom: 0px;
 }
-
-
 
 div.card {
     /* background-color: rgb(36, 58, 36); */
@@ -154,8 +134,7 @@ div.card {
     height: 160px;
     flex-direction: row;
     border-radius: 5px;
-
-    background: url(../img/card.png), rgba(0, 0, 0, 0.562); 
+    background: url(../img/card.png), rgba(0, 0, 0, 0.562);
 }
 
 div.card p {
@@ -178,8 +157,6 @@ div.card div.row img {
     width: 15px;
     height: 15px;
 }
-
-
 
 div#game-over {
     margin-top: 100px;
