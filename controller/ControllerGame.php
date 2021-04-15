@@ -1,20 +1,14 @@
 <?php
-//require_once("../view/include_const.php");
 
+// require_once("../view/includeConst.php");
 
 class ControllerGame
 {
     public $arrayHeroes = array();
     public $player1;
     public $player2;
-
     private $turn = 1;
 
-    /**
-     * ControllerGame constructor.
-     * @param $player1
-     * @param $player2
-     */
     public function __construct($player1, $player2)
     {
         $this->player1 = $player1;
@@ -68,11 +62,11 @@ class ControllerGame
 
     private function losePlayer($user)
     {
+
     }
 
     private function removedHeroes()
     {
-
         foreach ($this->player2->cards as $i => $value) {
             if (isset($this->player1->cards[$i]) && $this->player1->cards[$i]->hp <= 0)
                 unset($this->player1->cards[$i]);
@@ -97,11 +91,13 @@ class ControllerGame
         $resultArray = array();
         $listArray = $this->otherUser($id, $login);
         $i = 0;
+
         foreach ($listArray as $card) {
             $db->removeCard($card->idCard);
             $resultArray[$i] = $card->card;
             $i++;
         }
+
         echo json_encode($resultArray);
     }
 
@@ -109,6 +105,7 @@ class ControllerGame
     {
         $db = new BattleDb();
         $battle = $db->getBattleById($id);
+
         if ($battle->player1 != $login)
             return $db->getCard($id, $battle->player1);
         elseif ($battle->player2 != $login)
@@ -120,8 +117,5 @@ class ControllerGame
         $db = new BattleDb();
         $id = $db->getBattleByPlayer($login);
         $db->finishBattle($id);
+    }
 }
-
-//    public function send
-}
-

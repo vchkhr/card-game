@@ -63,8 +63,6 @@ function getCards() {
             "json[player]": document.querySelector("div#player div#name p").innerHTML
         },
         (data) => {
-            // data = '[{"player":"#PLAYER_2_NAME#","card":{"name":"Malekit","health":"3","attack":"4","mana":"3","img":".\/res\/img\/cards\/malekith.jpg"}}]'
-
             let json = JSON.parse(data)
 
             for (let i in json) {
@@ -79,7 +77,6 @@ function getCards() {
                 CARD_ID += 1
 
                 // MANA_THIS_MOVE -= cost
-
                 // document.querySelector("div#timer span.mana span#mana").innerHTML = MANA_THIS_MOVE
             }
         }
@@ -90,7 +87,6 @@ function sendGameOver() {
     sendData(
         {
             "json[gameOver]": document.querySelector("div#player div#name p").innerHTML
-            // "json[gameOverOpponent]": document.querySelector("div#opponent div#name p").innerHTML
         },
         (data) => {
             console.log("Game over send")

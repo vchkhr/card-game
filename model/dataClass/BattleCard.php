@@ -1,6 +1,5 @@
 <?php
 
-
 class BattleCard
 {
     public $idCard;
@@ -11,16 +10,6 @@ class BattleCard
     public $mana;
     public $card;
 
-    /**
-     * BattleCard constructor.
-     * @param $idCard
-     * @param $idBattle
-     * @param $playerLogin
-     * @param $hp
-     * @param $damage
-     * @param $mana
-     * @param $card
-     */
     public function setData($idCard, $idBattle, $playerLogin, $hp, $damage, $mana, $card)
     {
         $this->idCard = $idCard;
@@ -31,7 +20,4 @@ class BattleCard
         $this->mana = $mana;
         $this->card = $card;
     }
-
-
-
 }

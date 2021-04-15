@@ -28,7 +28,7 @@ class UserDB extends Model
                 $stmt = $this->connection->connection->prepare("SELECT * FROM $this->table  WHERE login = '$login';");
                 $stmt->execute();
                 $res = $stmt->fetch(PDO::FETCH_ASSOC);
-//                print_r($res);
+
                 $this->login = $res['login'];
                 $this->password = $res['password'];
                 $this->full_name = $res['fullName'];
@@ -43,6 +43,7 @@ class UserDB extends Model
     {
         if ($this->connection->getConnectionStatus()) {
             $row = $this->isEmpty();
+
             if ($row) {
                 $this->insert();
             } else {
@@ -67,13 +68,13 @@ class UserDB extends Model
 
     public function isEmpty()
     {
-        $request = "
-                    SELECT 1 as isntEmpty
+        $request = "SELECT 1 as isntEmpty
                     FROM players
                     WHERE login =  '$this->login';";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        
         return !$res;
     }
 

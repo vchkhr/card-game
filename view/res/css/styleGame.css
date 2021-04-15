@@ -17,7 +17,6 @@ div#health img {
 }
 
 div#opponent div#name {
-    /* background-color: cyan; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -27,7 +26,6 @@ div#opponent div#name {
 }
 
 div#opponent div#cards {
-    /* background-color: yellow; */
     width: 100%;
     height: 200px;
     display: flex;
@@ -37,7 +35,6 @@ div#opponent div#cards {
 }
 
 div#opponent div#health {
-    /* background-color: red; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -47,7 +44,6 @@ div#opponent div#health {
 }
 
 div#opponent div#field {
-    /* background-color: yellow; */
     width: 100%;
     height: 200px;
     display: flex;
@@ -87,7 +83,6 @@ div#timer span.mana span.current {
 }
 
 div#player div#field {
-    /* background-color: yellow; */
     width: 100%;
     height: 200px;
     display: flex;
@@ -97,7 +92,6 @@ div#player div#field {
 }
 
 div#player div#health {
-    /* background-color: red; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -107,7 +101,6 @@ div#player div#health {
 }
 
 div#player div#cards {
-    /* background-color: yellow; */
     width: 100%;
     height: 200px;
     display: flex;
@@ -117,7 +110,6 @@ div#player div#cards {
 }
 
 div#player div#name {
-    /* background-color: cyan; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -127,7 +119,6 @@ div#player div#name {
 }
 
 div.card {
-    /* background-color: rgb(36, 58, 36); */
     margin: 10px;
     padding: 10px;
     width: 80px;

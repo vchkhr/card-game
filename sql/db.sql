@@ -38,6 +38,6 @@ CREATE TABLE IF NOT EXISTS battle_card
     mana     INT                            NOT NULL,
     card     VARCHAR(1000)                  NOT NULL,
     FOREIGN KEY (idBattle) REFERENCES battles (id) ON DELETE CASCADE
--- #     FOREIGN KEY (player) REFERENCES battles (player1, player2) ON DELETE CASCADE
--- #     FOREIGN KEY (player) REFERENCES battles (player2) ON DELETE CASCADE
+    -- FOREIGN KEY (player) REFERENCES battles (player1, player2) ON DELETE CASCADE
+    -- FOREIGN KEY (player) REFERENCES battles (player2) ON DELETE CASCADE
 );

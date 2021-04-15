@@ -1,7 +1,6 @@
 <?php
 
 class DatabaseConnection {
-
     public $connection;
 
     public function __construct($host, $port, $username, $password, $database)
@@ -9,7 +8,10 @@ class DatabaseConnection {
         try {
             $this->connection = new PDO("mysql:host=$host;dbname=$database", $username, $password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {}
+        }
+        catch(PDOException $e) {
+            
+        }
     }
 
     public function __destruct()

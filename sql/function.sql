@@ -43,12 +43,12 @@ BEGIN
     RETURN FALSE;
 END;
 
-# CREATE FUNCTION removeCard(idCard INT) RETURNS BOOLEAN
-# BEGIN
-# DELETE
-# FROM battles
-# WHERE battles.idCard = idCard;
-# END;
+-- CREATE FUNCTION removeCard(idCard INT) RETURNS BOOLEAN
+-- BEGIN
+-- DELETE
+-- FROM battles
+-- WHERE battles.idCard = idCard;
+-- END;
 
 CREATE FUNCTION changeCard(@idBattles INT, @login CHAR(50), @newHpCard INT, @previousHpCard INT, @damage INT, @mana INT,
                            @cardJson VARCHAR(1000))

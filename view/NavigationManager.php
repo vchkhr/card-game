@@ -9,7 +9,7 @@ class NavigationManager
 
     public function __construct($htmlFilePath)
     {
-//        $this->changeScreen($htmlFilePath);
+
     }
 
     public function renderBy($key)

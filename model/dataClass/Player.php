@@ -1,6 +1,5 @@
 <?php
 
-
 class Player
 {
     public $hp;
@@ -8,12 +7,6 @@ class Player
     public $imgUrl = "";
     public $cards = array();
 
-    /**
-     * Player constructor.
-     * @param $hp
-     * @param $name
-     * @param $imgUrl
-     */
     public function __construct($hp, $name, $imgUrl = "")
     {
         $this->hp = $hp;
@@ -29,9 +22,9 @@ class Player
     {
         echo "User card:";
         print_r($this->cards);
-//        foreach ($this->cards as $card){
-//            echo "$card <br>";
-//        }
-    }
 
+        // foreach($this->cards as $card) {
+        //     echo "$card <br>";
+        // }
+    }
 }

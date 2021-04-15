@@ -1,34 +1,33 @@
 <?php
-require_once("include_const.php");
+
+require_once("includeConst.php");
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: *");
-//if ($_POST['startGameLogin'])
-//    echo $_POST['startGameLogin'] . " <br>";
+
 $register = "./res/html/registration.html";
 $login = "./res/html/login.html";
-$userCard = "./res/html/user_card.html";
-$adminCard = "./res/html/card_admin.html";
-$forget = "./res/html/forget_password.html";
+$userCard = "./res/html/profile.html";
+$adminCard = "./res/html/profile.html";
+$forget = "./res/html/forgotPassword.html";
 $game = "./res/html/game.html";
 $waitPlayer = "./res/html/waitPlayer.html";
 
-//require_once("../model/data_class/");
+// require_once("../model/data_class/");
 
-//$playerWaitDb = new PlayerWaitDb();
-//$playerWaitDb->removeUser('User1');
-////$playerWaitDb->addUser('User1','User1');
-////$playerWaitDb->addUser('User4','User1');
-//$playerWaitDb->removeUser('User1');
-//$playerWaitDb->removeUser('User2');
-//$playerWaitDb->removeUser('User3');
-//$playerWaitDb->removeUser('User4');
-//print_r($playerWaitDb->getUsers());
-////print_r();
-//$cardDb = new BattleDb();
-//$cardDb->finishBattle(7);
-
+// $playerWaitDb = new PlayerWaitDb();
+// $playerWaitDb->removeUser('User1');
+// $playerWaitDb->addUser('User1','User1');
+// $playerWaitDb->addUser('User4','User1');
+// $playerWaitDb->removeUser('User1');
+// $playerWaitDb->removeUser('User2');
+// $playerWaitDb->removeUser('User3');
+// $playerWaitDb->removeUser('User4');
+// print_r($playerWaitDb->getUsers());
+// print_r();
+// $cardDb = new BattleDb();
+// $cardDb->finishBattle(7);
 
 $manager = new NavigationManager($register);
 $manager->putScreen('register', $register);
@@ -43,11 +42,10 @@ $binder = new Binder($manager);
 
 $screenController = new ControllerRegister($manager);
 $controllerGame = new ControllerGame(null, null);
-//print_r($manager->arrFragment);
 
-//$manager->renderBy('register');
-
-//$binder->startBattle("User1", 'User2');
+// print_r($manager->arrFragment);
+// $manager->renderBy('register');
+// $binder->startBattle("User1", 'User2');
 
 if (isset($_POST['registerUser'])) {
     if ($_POST['registerUser']['password'] == $_POST['registerUser']['confirmPassword']) {
@@ -65,8 +63,6 @@ if (isset($_POST['registerUser'])) {
     $manager->renderBy('register');
 } elseif (isset($_POST['login'])) {
     $manager->renderBy('login');
-} elseif (isset($_POST['finderGame'])) {
-
 } elseif (isset($_POST['removeWaitUser'])) {
     $db = new PlayerWaitDb();
     $db->removeUser($_POST['removeWaitUserLogin']);
@@ -75,6 +71,7 @@ if (isset($_POST['registerUser'])) {
 //    $manager->renderBy('login');
 } elseif (isset($_POST['checkSearcherUser'])) {
     $loginUser = $_POST['checkSearcherUser'];
+    
     if (!$screenController->isWait($loginUser)) {
         $player2 = $screenController->getUserInBattleByUser($loginUser);
         $binder->startBattle("$loginUser", $player2);
@@ -91,7 +88,7 @@ if (isset($_POST['registerUser'])) {
         $userDb->update();
 
         $binder->startBattle($loginUser, $player2);
-//        $binder->startBattle("kate", "User3");
+        // $binder->startBattle("kate", "User3");
     } else {
         $binder->startWaitPlayer($_POST['startGameLogin']);
     }
@@ -113,9 +110,9 @@ if (isset($_POST['json']['gameOver'])){
 if (isset($_POST['exitToMainLogin'])){
     $screenController->loadUser($_POST['exitToMainLogin']);
 
-//    $manager->changeScreen('userCard');
-//    $this->manager->bind("USER_NAME", $_POST['exitToMainLogin']);
-//    $this->manager->render();
+    // $manager->changeScreen('userCard');
+    // $this->manager->bind("USER_NAME", $_POST['exitToMainLogin']);
+    // $this->manager->render();
 }
 
 function arrayToUser(array $arr)

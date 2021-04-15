@@ -1,6 +1,5 @@
 <?php
 
-
 class Heroes
 {
     public $name;
@@ -9,14 +8,6 @@ class Heroes
     public $imgUrl;
     public $price;
 
-    /**
-     * Heroes constructor.
-     * @param $name
-     * @param $hp
-     * @param $damage
-     * @param $imgUrl
-     * @param $price
-     */
     public function __construct($name, $hp, $damage, $imgUrl, $price)
     {
         $this->name = $name;
