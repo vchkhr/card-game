@@ -31,7 +31,7 @@
     <div id="timer" class="hidden">
         <p>
             <span class="move"><span class="current">YOUR MOVE!</span> | </span>
-            <span class="timer">TIME: <span id="timer"></span></span>
+            <span class="timer"><span id="text">TIME</span>: <span id="timer"></span></span>
             <span class="mana"> | <span class="current">MANA: <span id="mana"></span></span></span>
         </p>
     </div>
@@ -42,9 +42,8 @@
 
         <p>Moves: <span id="moves-count"></span></p>
 
-        <form method="post">
-            <input type="text" name="userCard" class="hidden">
-            <input type="submit" name="game" value="Exit"><br>
+        <form>
+            <input type="button" name="game" value="Exit" onclick="window.history.back()"><br>
         </form>
     </div>
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Waiting for your opponent...</title>
+    <link rel="stylesheet" href="./res/css/style.css">
+</head>
+<body>
+    <div id="user-card" class="box">
+        <h1>Waiting for your opponent...</h1>
+
+        <form method="post" action="index.php">
+            <input name="removeWaitUserLogin" value="#USER_NAME#" class="hidden">
+            <input name="removeWaitUser" type="submit" value="Cancel">
+            <input id="checkSearcherUser" name="checkSearcherUser" value="#USER_NAME#" type="submit" class="hidden">
+        </form>
+    </div>
+
+    <script>
+        setInterval(() => {
+            document.getElementById('checkSearcherUser').click()
+        }, 500)
+    </script>
+</body>
+</html>

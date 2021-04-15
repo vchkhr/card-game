@@ -159,6 +159,7 @@ function changePlayer() {
 
         document.querySelector("div#timer span.move").classList.add("hidden")
         document.querySelector("div#timer span.mana").classList.add("hidden")
+        document.querySelector("div#timer span.timer span#text").innerHTML = "WAIT"
         CURRENT_PLAYER = "opponent"
     }
     else {
@@ -169,6 +170,7 @@ function changePlayer() {
 
         document.querySelector("div#timer span.move").classList.remove("hidden")
         document.querySelector("div#timer span.mana").classList.remove("hidden")
+        document.querySelector("div#timer span.timer span#text").innerHTML = "TIME"
         CURRENT_PLAYER = "player"
 
         if (CARDS_PLAYER <= CARDS_MAX - 1) {
