@@ -34,7 +34,7 @@ class NavigationManager
     public function bind($id, $value)
     {
         if (isset($this->htmlFileContent))
-            $this->htmlFileContent = str_replace($id, $value, $this->htmlFileContent);
+            $this->htmlFileContent = str_replace("#$id#", $value, $this->htmlFileContent);
     }
 
     public function putScreen($key, $value)

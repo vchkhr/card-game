@@ -33,10 +33,21 @@ class BattleDb extends Model
         return $res['id'];
     }
 
-    private function isEmpty()
+    public function getBattleByPlayer($player1)
     {
-
+        $request = "
+        SELECT battles.id
+        FROM battles
+        WHERE player1 = '$player1'
+        or player2 = '$player1'
+        LIMIT 1;";
+        $stmt = $this->connection->connection->prepare($request);
+        $stmt->execute();
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($res['id']))
+            return $res['id'];
     }
+
 
     public function getCard($idBattle, $player)
     {
@@ -91,6 +102,34 @@ class BattleDb extends Model
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
     }
+
+    public function removeCard($id)
+    {
+        $request = "
+        DELETE FROM battle_card
+        WHERE battle_card.idCard = $id;";
+        $stmt = $this->connection->connection->prepare($request);
+        $stmt->execute();
+    }
+
+    public function getBattleById($id)
+    {
+        $request = "
+        SELECT *
+        FROM battles
+        WHERE id = $id;";
+        $stmt = $this->connection->connection->prepare($request);
+        $stmt->execute();
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        $battle = new Battle(
+            $id,
+            $res['player1'],
+            $res['player2']
+        );
+        return $battle;
+
+    }
+
 }
 
 //                          $card->idCard =

@@ -7,10 +7,26 @@
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+    const URL = "http://10.11.6.2:8080/view/index.php"
+    // sendData(
+    //     {
+    //         "json[player]": 'kate',
+    //         "json[card][name]": 'name1',
+    //         "json[card][health]": 2,
+    //         "json[card][attack]": 3,
+    //         "json[card][mana]": 4,
+    //         "json[card][img]": '.\\/res\\/img\\/cards\\/malekith.jpg'
+    //     },
+    //     (data) => {
+    //         console.log((data))
+    //     }
+    // )
     sendData(
-        {name: 'Hello'},
+        {
+            "json[player]": 'kate'
+        },
         (data) => {
-            alert(data)
+            console.log((data))
         }
     )
 
@@ -36,7 +52,7 @@
         //     alert( 'Oops! Something went wrong.' );
         // } );
         // Set up our request
-        XHR.open( 'POST', 'http://10.11.6.2:8080/test.php' );
+        XHR.open( 'POST', URL);
         // Send our FormData object; HTTP headers are set automatically
         XHR.send( FD );
     }

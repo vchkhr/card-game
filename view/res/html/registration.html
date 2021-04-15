@@ -42,7 +42,7 @@
     <div id="register-box" class="box">
         <h1>Create Account</h1>
 
-        <form name="contact_form" method="post" onsubmit="return validate_form ();">
+        <form name="contact_form" method="post" action="index.php" onsubmit="return validate_form ();">
                 <input type="text" name="registerUser[login]" placeholder="Login" required>
                 <input id="textPassword" type="password" name="registerUser[password]" placeholder="Password" required>
                 <input id="textConfirmPassword" type="password" name="registerUser[confirmPassword]" placeholder="Confirm Password" required>
@@ -52,9 +52,10 @@
                 <input type="submit" value="Create Account">
         </form>
 
-        <form method="post">
+        <form method="post" action="index.php" >
             <input type="submit" name="login" value="Sign In Instead">
         </form>
     </div>
 </body>
 </html>
+<!--http://10.11.6.2:8080/view/start_client.php-->
