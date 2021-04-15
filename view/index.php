@@ -1,36 +1,35 @@
 <?php
-require_once("NavigationManager.php");
-require_once("../controller/ControllerRegister.php");
-require_once("../model/db/Model.php");
-require_once("../model/db/User.php");
-require_once("../model/db/BattleDb.php");
-require_once("../model/db/UserDB.php");
-require_once("../model/db/PlayerWaitDb.php");
-require_once("../model/db/DatabaseConnection.php");
-//require_once("../model/");
-//require_once("../model/data_class/");
-require_once("../model/data_class/Battle.php");
-require_once("../model/data_class/BattleCard.php");
-require_once("../model/data_class/Heroes.php");
-require_once("../model/data_class/Player.php");
-//require_once("../model/data_class/");
+require_once("include_const.php");
 
-//$playerWaitDb = new PlayerWaitDb();
-//$playerWaitDb->removeUser('User1');
-////$playerWaitDb->addUser('User1','User1');
-////$playerWaitDb->addUser('User4','User1');
-//$playerWaitDb->removeUser('User4');
-//print_r($playerWaitDb->getUsers());
-////print_r();
-//$cardDb = new BattleDb();
-//$cardDb->finishBattle(5);
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: *");
+header("Access-Control-Allow-Headers: *");
+//if ($_POST['startGameLogin'])
+//    echo $_POST['startGameLogin'] . " <br>";
 $register = "./res/html/registration.html";
 $login = "./res/html/login.html";
 $userCard = "./res/html/user_card.html";
 $adminCard = "./res/html/card_admin.html";
 $forget = "./res/html/forget_password.html";
 $game = "./res/html/game.html";
+$waitPlayer = "./res/html/waitPlayer.html";
+
+//require_once("../model/data_class/");
+
+//$playerWaitDb = new PlayerWaitDb();
+//$playerWaitDb->removeUser('User1');
+////$playerWaitDb->addUser('User1','User1');
+////$playerWaitDb->addUser('User4','User1');
+//$playerWaitDb->removeUser('User1');
+//$playerWaitDb->removeUser('User2');
+//$playerWaitDb->removeUser('User3');
+//$playerWaitDb->removeUser('User4');
+//print_r($playerWaitDb->getUsers());
+////print_r();
+//$cardDb = new BattleDb();
+//$cardDb->finishBattle(7);
+
+
 
 $manager = new NavigationManager($register);
 $manager->putScreen('register', $register);
@@ -39,11 +38,17 @@ $manager->putScreen('forget', $forget);
 $manager->putScreen('adminCard', $adminCard);
 $manager->putScreen('userCard', $userCard);
 $manager->putScreen('game', $game);
+$manager->putScreen('waitPlayer', $waitPlayer);
+
+$binder = new Binder($manager);
 
 $screenController = new ControllerRegister($manager);
+$controllerGame = new ControllerGame(null, null);
 //print_r($manager->arrFragment);
 
-$manager->renderBy('register');
+//$manager->renderBy('register');
+
+//$binder->startBattle("User1", 'User2');
 
 if (isset($_POST['registerUser'])) {
     if ($_POST['registerUser']['password'] == $_POST['registerUser']['confirmPassword']) {
@@ -63,20 +68,52 @@ if (isset($_POST['registerUser'])) {
     $manager->renderBy('login');
 } elseif (isset($_POST['finderGame'])) {
 
+} elseif (isset($_POST['removeWaitUser'])) {
+//$_POST['removeWaitUserLogin']
 } elseif (isset($_POST['checkSearcherUser'])) {
-    $screenController->isWait($_POST['checkSearcherUser']);
+    $loginUser = $_POST['checkSearcherUser'];
+    if (!$screenController->isWait($loginUser)) {
+        $player2 = $screenController->getUserInBattleByUser($loginUser);
+        $binder->startBattle("$loginUser", $player2);
+    } else
+        $binder->startWaitPlayer($_POST['removeWaitUserLogin']);
 } elseif (isset($_POST['game'])) {
-    // if ($screenController->startBattle($_POST['startGameLogin'])){
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: *");
-    header("Access-Control-Allow-Headers: *");
-    
-    $manager->changeScreen('game');
-    $manager->bind("#USER_NAME#", '$userDb->login');
-    $manager->bind("#PROFILE_IMAGE#", '$userDb->imgUrl');
-    $manager->render();
-    // }
+    if ($screenController->startBattle($_POST['startGameLogin'])) {
+        $loginUser = $_POST['startGameLogin'];
+        $player2 = $screenController->getUserInBattleByUser($loginUser);
+        $binder->startBattle("$loginUser", $player2);
+//        $binder->startBattle("kate", "User3");
+    } else {
+//        echo $_POST['startGameLogin'] . " <br>";
+        $binder->startWaitPlayer($_POST['startGameLogin']);
+    }
+} elseif (isset($_POST['json'])) {
+    if (isset($_POST['json']['card'])) {
+        $controllerGame->addCard($_POST['json']['player'], $_POST['json']['card']);
+    } elseif (isset($_POST['json']['player'])) {
+        $loginUser = $_POST['json']['player'];
+//        $battleDb = new BattleDb();
+//        $id = $battleDb->getBattleByPlayer($loginUser);
+//        $listCard = $battleDb->getCard($id,$loginUser);
+        $controller = new ControllerGame(null,null);
+        $controller->checkCardByUser($loginUser);
+
+//        foreach ($listCard as $card){
+//            echo
+//        }
+//        $controllerGame->addCard($_POST['json']['player'], $_POST['json']['card']);
+    }
 }
+
+//
+//        sendData(
+//        {
+//            "json[player]": PLAYER_NAME
+//        },
+//        (data) => {
+//    console.log((data))
+//        }
+//    )
 
 function arrayToUser(array $arr)
 {
@@ -90,3 +127,11 @@ function notify($massage)
                 alert('$massage')
             </SCRIPT>";
 }
+
+//if (isset($_POST['json']['player'])) {
+//    $loginUser = 'kate';
+////    $loginUser = $_POST['json']['player'];
+//    $battleDb = new BattleDb();
+//    $id = $battleDb->getBattleByPlayer($loginUser);
+//    $listCard = $battleDb->getCard($id,$loginUser);
+//}
