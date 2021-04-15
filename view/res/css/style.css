@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=RocknRoll+One:400);
-
-html { 
+html {
     background: url(../img/bkg.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -44,12 +43,10 @@ div#forgot-password {
 }
 
 div#user-card {
-    height: 350px;
+    height: 380px;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"]{
+input[type="text"], input[type="password"], input[type="email"] {
     display: block;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -64,15 +61,14 @@ input[type="email"]{
     transition: 0.2s ease;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus {
     border-bottom: 2px solid #a01616;
     color: #a01616;
     transition: 0.2s ease;
     outline: none;
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="button"] {
     margin-top: 30px;
     width: 180px;
     height: 32px;
@@ -86,14 +82,13 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover,
-input[type="submit"]:focus {
+input[type="submit"]:hover, input[type="submit"]:focus, input[type="button"]:hover, input[type="button"]:focus {
     opacity: 0.8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     transition: 0.1s ease;
 }
 
-input[type="submit"]:active {
+input[type="submit"]:active, input[type="button"]:active {
     opacity: 1;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     transition: 0.1s ease;

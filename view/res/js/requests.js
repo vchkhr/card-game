@@ -8,8 +8,7 @@ function sendData(data, callback) {
     }
     
     XHR.addEventListener('load', function(event) {
-        console.log("Sending requests...")
-        console.log(FD)
+        // console.log("Sending requests...")
 
         if (XHR.status != 200) {
             alert(`Error ${XHR.status}: ${XHR.statusText}`)
@@ -46,7 +45,26 @@ function getCards() {
             "json[player]": PLAYER_NAME
         },
         (data) => {
-            console.log((data))
+            console.log(data)
+            // data = '[{"player":"#PLAYER_2_NAME#","card":{"name":"Malekit","health":"3","attack":"4","mana":"3","img":".\/res\/img\/cards\/malekith.jpg"}}]'
+
+            let json = JSON.parse(data)
+
+            for (i in json) {
+                if (json[i]["player"] == document.querySelector("div#opponent div#name p").innerHTML) {
+                    document.querySelector("div#opponent div#field").insertAdjacentHTML("beforeend", "<div id='card" + CARD_ID + "' class='card' style='background: url(./res/img/card.png), url(" + json[i]["card"]["img"] + "), rgba(0, 0, 0, 0.562)'><div class='row'><p class='health'><img src='./res/img/heart.png'><span id='health'>" + json[i]["card"]["health"] + "</span></p><p class='attack'><img src='./res/img/sword.png'><span id='attack'>" + json[i]["card"]["attack"] + "</span></p><p class='mana'><img src='./res/img/mana.png'><span id='mana'>" + json[i]["card"]["mana"] + "</span></p></div><p class='name'>" + json[i]["card"]["name"] + "</p></div>")
+    
+                    if (document.querySelector("div#opponent div#cards div.card") != null) {
+                        document.querySelector("div#opponent div#cards div.card").remove()
+                    }
+    
+                    CARD_ID += 1
+        
+                    // MANA_THIS_MOVE -= cost
+        
+                    // document.querySelector("div#timer span.mana span#mana").innerHTML = MANA_THIS_MOVE
+                }
+            }
         }
     )
 }
