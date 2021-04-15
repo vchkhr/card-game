@@ -87,7 +87,7 @@ class UserDB extends Model
 
     public function update()
     {
-        $request = "UPDATE players SET  login = '$this->login' , password = '$this->password' , full_name = '$this->full_name' , email_address = '$this->email_address'  WHERE login = '$this->login';";
+        $request = "UPDATE players SET  login = '$this->login' , password = '$this->password' , fullName = '$this->full_name' , emailUser = '$this->email_address', ing = '$this->img'  WHERE login = '$this->login';";
         $stmt = $this->connection->connection->prepare($request);
         $stmt->execute();
     }

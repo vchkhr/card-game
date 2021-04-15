@@ -70,6 +70,8 @@ function gameOver() {
             document.querySelector("div#player div#name img").src = "./res/img/lose.gif"
         }
 
+        sendGameOver()
+
         setTimeout(function() {
             document.querySelector("div#game-over").classList.remove("hidden")
 
@@ -258,22 +260,31 @@ function cardsAtStart() {
     }
 }
 
+whoIsFirst()
+
 setTimeout(function() {
     document.querySelector("div#coin").classList.add("hidden")
     document.querySelector("div#timer").classList.remove("hidden")
     document.querySelector("div#opponent").classList.remove("hidden")
     document.querySelector("div#player").classList.remove("hidden")
 
-    if (Math.floor(Math.random() * 2) == 1) {
-        changePlayer()
-    }
-    else {
+    if (FIRST_PLAYER) {
         gameTimer()
     }
+    else {
+        changePlayer()
+    }
+
+    // if (Math.floor(Math.random() * 2) == 1) {
+    //     changePlayer()
+    // }
+    // else {
+    //     gameTimer()
+    // }
 
     updateMana()
     cardsAtStart()
-}, 1)
+}, 2000)
 
 function startUpdateFunction() {
     UPD_CARDS = setInterval(function() {

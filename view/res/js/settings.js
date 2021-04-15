@@ -1,5 +1,5 @@
 const TIME_FOR_ONE_MOVE = 6
-const TIME_UPDATE_EXTRA = 3
+const TIME_UPDATE_EXTRA = 0
 const MANA_MAX = 6
 const GAME_MODE = 0 // 0 - two players on local network
                     // 1 - two players on one computer
@@ -26,3 +26,4 @@ let CARD_ID = 0
 let MOVES_COUNT = 0
 
 let UPD_CARDS
+let FIRST_PLAYER

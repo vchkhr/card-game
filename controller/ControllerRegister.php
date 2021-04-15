@@ -48,9 +48,25 @@ class ControllerRegister
                 } else {
                     $this->manager->changeScreen('userCard');
                     $this->manager->bind("USER_NAME", $userDb->login);
+                    $this->manager->bind("PROFILE_IMAGE", $userDb->img);
                     $this->manager->render();
                 }
             }
+        } else {
+            $this->notify('Unknown user');
+        }
+    }
+
+    public function loadUser($login)
+    {
+        $userDb = new UserDB();
+        $userDb->login = $login;
+        if (!$userDb->isEmpty()) {
+            $userDb->find($userDb->login);
+                $this->manager->changeScreen('userCard');
+                $this->manager->bind("USER_NAME", $userDb->login);
+                $this->manager->bind("PROFILE_IMAGE", $userDb->img);
+                $this->manager->render();
         } else {
             $this->notify('Unknown user');
         }

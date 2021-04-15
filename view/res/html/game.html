@@ -40,10 +40,11 @@
         <h1 class="win hidden">You Win!</h1>
         <h1 class="lose hidden">You Lose!</h1>
 
-        <p>Moves: <span id="moves-count"></span></p>
+<!--        <p>Moves: <span id="moves-count"></span></p>-->
 
-        <form>
-            <input type="button" name="game" value="Exit" onclick="window.history.back()"><br>
+        <form method="post">
+            <input type="text" name="exitToMainLogin" value="#PLAYER_1_NAME#" class="hidden">
+            <input type="submit" name="exitToMain" value="Exit">
         </form>
     </div>
 
@@ -64,10 +65,10 @@
         </div>
     </div>
 
-    <script src="./res/js/settings.js"></script>
-    <script src="./res/js/game.js"></script>
     <script src="./res/js/cards.js"></script>
+    <script src="./res/js/settings.js"></script>
     <script src="./res/js/requests.js"></script>
+    <script src="./res/js/game.js"></script>
 </body>
 
 </html>
