@@ -94,8 +94,8 @@ class ControllerGame
     {
         $db = new BattleDb();
         $id = $db->getBattleByPlayer($login);
-        $listArray = $db->getCard($id, $login);
         $resultArray = array();
+        $listArray = $this->otherUser($id, $login);
         $i = 0;
         foreach ($listArray as $card) {
             $db->removeCard($card->idCard);
@@ -104,6 +104,23 @@ class ControllerGame
         }
         echo json_encode($resultArray);
     }
+
+    public function otherUser($id, $login)
+    {
+        $db = new BattleDb();
+        $battle = $db->getBattleById($id);
+        if ($battle->player1 != $login)
+            return $db->getCard($id, $battle->player1);
+        elseif ($battle->player2 != $login)
+            return $db->getCard($id, $battle->player2);
+    }
+
+    public function finishBattle($login)
+    {
+        $db = new BattleDb();
+        $id = $db->getBattleByPlayer($login);
+        $db->finishBattle($id);
+}
 
 //    public function send
 }

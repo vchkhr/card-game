@@ -107,7 +107,8 @@ class ControllerRegister
                     $db->removeUser($userLogin);
                     $db->removeUser($user['loginUser']);
                     return true;
-                } catch (Exception $e) {}
+                } catch (Exception $e) {
+                }
             } else {
                 $idBattle = -2;
             }
@@ -130,12 +131,21 @@ class ControllerRegister
         return false;
     }
 
-    public function getUserInBattleByUser($loginUser){
+    public function getUserInBattleByUser($loginUser)
+    {
         $dbBattle = new BattleDb();
         $battle = $dbBattle->getBattleById($dbBattle->getBattleByPlayer($loginUser));
-        if ($battle->player1!=$loginUser)
+        if ($battle->player1 != $loginUser)
             return $battle->player1;
         else
             return $battle->player2;
+    }
+
+    public function createRandUser($login)
+    {
+        $dbBattle = new BattleDb();
+        $id = $dbBattle->getBattleByPlayer($login);
+        $battle = $dbBattle->getBattleById($id);
+        return $battle->player1;
     }
 }

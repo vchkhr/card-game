@@ -119,7 +119,9 @@ class BattleDb extends Model
         FROM battles
         WHERE id = $id;";
         $stmt = $this->connection->connection->prepare($request);
-        $stmt->execute();
+        try {
+            $stmt->execute();
+        }catch (Exception $e){}
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
         $battle = new Battle(
             $id,
@@ -129,7 +131,6 @@ class BattleDb extends Model
         return $battle;
 
     }
-
 }
 
 //                          $card->idCard =

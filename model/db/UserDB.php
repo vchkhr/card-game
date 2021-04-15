@@ -8,6 +8,7 @@ class UserDB extends Model
     public $full_name;
     public $email_address;
     public $isAdmin;
+    public $img;
     public $table = 'players';
 
     public function __construct()
@@ -33,6 +34,7 @@ class UserDB extends Model
                 $this->full_name = $res['fullName'];
                 $this->email_address = $res['emailUser'];
                 $this->isAdmin = $res['isAdmin'];
+                $this->img = $res['ing'];
             }
         }
     }
