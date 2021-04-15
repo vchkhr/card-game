@@ -1,3 +1,5 @@
+const URL = "http://10.11.6.2:8080/view/index.php"
+
 function sendData(data, callback) {
     const XHR = new XMLHttpRequest(), FD  = new FormData();
 
@@ -7,6 +9,7 @@ function sendData(data, callback) {
     
     XHR.addEventListener('load', function(event) {
         console.log("Sending requests...")
+        console.log(FD)
 
         if (XHR.status != 200) {
             alert(`Error ${XHR.status}: ${XHR.statusText}`)
@@ -17,7 +20,7 @@ function sendData(data, callback) {
         }
     })
     
-    XHR.open('POST', 'http://10.11.6.2:8080/test.php')
+    XHR.open('POST', URL)
     XHR.send(FD);
 }
 

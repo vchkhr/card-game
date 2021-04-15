@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+Waiting player
+<form method="post" action="index.php">
+    <input name="removeWaitUserLogin" value="#USER_NAME#" type="hidden">
+    <input name="removeWaitUser" type="submit" value="cancel">
+    <input id="checkSearcherUser" name="checkSearcherUser" value="#USER_NAME#" type="submit" style="visibility: hidden">
+</form>
+<script>
+    setInterval(()=>{
+        document.getElementById('checkSearcherUser').click()
+    },500)
+</script>
+
+</body>
+</html>
+
+<!--style="visibility: hidden"-->
+

@@ -32,28 +32,28 @@ class ControllerRegister
 
     public function login($login, $password)
     {
-        // $userDb = new UserDB();
-        // $userDb->login = $login;
-        // if (!$userDb->isEmpty()) {
-        //     $userDb->find($userDb->login);
-        //     echo $userDb->password;
-        //     if (!$this->isPasswordCorrect($userDb->password, $password)) {
+        $userDb = new UserDB();
+        $userDb->login = $login;
+        if (!$userDb->isEmpty()) {
+            $userDb->find($userDb->login);
+            echo $userDb->password;
+            if (!$this->isPasswordCorrect($userDb->password, $password)) {
 
-        //         $this->notify('Incorrect password');
-        //     } else {
-        //         if ($userDb->isAdmin) {
-        //             $this->manager->changeScreen('adminCard');
-        //             $this->manager->bind("#USER_NAME#", $userDb->login);
-        //             $this->manager->render();
-        //         } else {
-                    $this->manager->changeScreen('userCard');
-                    $this->manager->bind("#USER_NAME#", $userDb->login);
+                $this->notify('Incorrect password');
+            } else {
+                if ($userDb->isAdmin) {
+                    $this->manager->changeScreen('adminCard');
+                    $this->manager->bind("USER_NAME", $userDb->login);
                     $this->manager->render();
-        //         }
-        //     }
-        // } else {
-        //     $this->notify('Unknown user');
-        // }
+                } else {
+                    $this->manager->changeScreen('userCard');
+                    $this->manager->bind("USER_NAME", $userDb->login);
+                    $this->manager->render();
+                }
+            }
+        } else {
+            $this->notify('Unknown user');
+        }
     }
 
     public function forget($email)
@@ -103,13 +103,11 @@ class ControllerRegister
         foreach ($listUser as $user) {
             if ($user['loginUser'] != $user) {
                 try {
-                    echo
                     $idBattle = $dbBattle->startBattle($userLogin, $user['loginUser']);
                     $db->removeUser($userLogin);
                     $db->removeUser($user['loginUser']);
                     return true;
-                } catch (Exception $e) {
-                }
+                } catch (Exception $e) {}
             } else {
                 $idBattle = -2;
             }
@@ -125,10 +123,19 @@ class ControllerRegister
         $db = new PlayerWaitDb();
         $listUser = $db->getUsers();
         foreach ($listUser as $user) {
-            if ($user['loginUser'] == $user) {
+            if ($userLogin == $user['loginUser']) {
                 return true;
             }
         }
         return false;
+    }
+
+    public function getUserInBattleByUser($loginUser){
+        $dbBattle = new BattleDb();
+        $battle = $dbBattle->getBattleById($dbBattle->getBattleByPlayer($loginUser));
+        if ($battle->player1!=$loginUser)
+            return $battle->player1;
+        else
+            return $battle->player2;
     }
 }

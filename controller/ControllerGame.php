@@ -1,4 +1,5 @@
 <?php
+//require_once("../view/include_const.php");
 
 
 class ControllerGame
@@ -26,7 +27,7 @@ class ControllerGame
             if ($id == 1)
                 $this->attackToUser($this->player1, $card->damage);
             else
-                $this->attackToUser($this->player2,$card->damage);
+                $this->attackToUser($this->player2, $card->damage);
         }
     }
 
@@ -81,4 +82,29 @@ class ControllerGame
                 unset($this->player2->cards[$i]);
         }
     }
+
+    public function addCard($login, $card)
+    {
+        $db = new BattleDb();
+        $idCard = $db->getBattleByPlayer($login);
+        $db->addBattleCard($login, $idCard, $card['health'], $card['attack'], $card['mana'], json_encode($card));
+    }
+
+    public function checkCardByUser($login)
+    {
+        $db = new BattleDb();
+        $id = $db->getBattleByPlayer($login);
+        $listArray = $db->getCard($id, $login);
+        $resultArray = array();
+        $i = 0;
+        foreach ($listArray as $card) {
+            $db->removeCard($card->idCard);
+            $resultArray[$i] = $card->card;
+            $i++;
+        }
+        echo json_encode($resultArray);
+    }
+
+//    public function send
 }
+
