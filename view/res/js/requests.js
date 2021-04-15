@@ -1,3 +1,5 @@
+const URL = "http://10.11.6.2:8080/view/index.php"
+
 function sendData(data, callback) {
     const XHR = new XMLHttpRequest(), FD  = new FormData();
 
@@ -17,7 +19,7 @@ function sendData(data, callback) {
         }
     })
     
-    XHR.open('POST', 'http://10.11.6.2:8080/test.php')
+    XHR.open('POST', URL)
     XHR.send(FD);
 }
 
